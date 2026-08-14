@@ -1,0 +1,36 @@
+\documentclass[12pt]{report}
+\usepackage[margin=2cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+
+% Core packages
+\usepackage{amsmath,amssymb,mathrsfs}
+\usepackage{tikz-cd}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage{parskip}
+\usepackage{tabularray}
+\usepackage[hidelinks]{hyperref}
+
+% Paragraphs
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1\baselineskip}
+
+\title{Fundamentos de Estadística I}
+\author{Daniel Soto Villada}
+\date{\today}
+
+\begin{document}
+\hypersetup{pageanchor=false}
+\maketitle
+\hypersetup{pageanchor=true}
+\tableofcontents
+\clearpage
+
+% Clases
+\input{Clases/Clase1}
+\input{Clases/Clase2}
+\input{Clases/Clase3}
+
+\end{document}

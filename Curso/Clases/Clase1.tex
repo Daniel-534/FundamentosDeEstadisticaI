@@ -1,0 +1,71 @@
+\chapter{Clase 1}
+
+\section{Introducción a la Estadística}
+La estadística es la ciencia que se encarga de planear estudios y experimentos, obtener datos, organizarlos, resumirlos, presentarlos, analizarlos e interpretarlos para obtener conclusiones basadas en ellos. El pensamiento estadístico exige evaluar el contexto, la fuente y el método de muestreo antes de realizar cualquier cálculo, priorizando el sentido común sobre la aplicación irreflexiva de fórmulas.
+
+\subsection{Conceptos Fundamentales}
+Para estructurar cualquier análisis, es necesario distinguir entre la población de estudio y la muestra extraída de ella.
+
+\begin{longtblr}{colspec={|Q[l,wd=3.5cm]|Q[l,wd=9cm]|}, rowhead=1}
+\hline
+\textbf{Concepto} & \textbf{Definición} \\
+\hline
+Población & Conjunto completo de todos los elementos sobre los que se desea investigar. \\
+\hline
+Muestra & Subconjunto de miembros seleccionados de una población. \\
+\hline
+Censo & Conjunto de datos de todos los miembros de la población. \\
+\hline
+Parámetro & Medición numérica que describe una característica de la población. \\
+\hline
+Dato estadístico & Medición numérica que describe una característica de la muestra. \\
+\hline
+\end{longtblr}
+
+La notación matemática estándar diferencia las mediciones poblacionales de las muestrales:
+$$ \text{Parámetros poblacionales: } \mu, \sigma, \sigma^2, p $$
+$$ \text{Estadísticos muestrales: } \bar{x}, s, s^2, \hat{p} $$
+
+\subsection{Tipos de Datos y Niveles de Medición}
+El tipo de dato determina qué procedimientos estadísticos son apropiados. Realizar cálculos con datos inapropiados (como promediar códigos postales o números de camisetas) carece de sentido matemático.
+
+\begin{longtblr}{colspec={|Q[l,wd=3cm]|Q[l,wd=9.5cm]|}, rowhead=1}
+\hline
+\textbf{Nivel} & \textbf{Características y Ejemplo} \\
+\hline
+Nominal & Solo categorías o etiquetas. No se pueden ordenar ni calcular. (Ej. Colores, géneros). \\
+\hline
+Ordinal & Se pueden ordenar, pero las diferencias entre valores carecen de significado. (Ej. Calificaciones A, B, C). \\
+\hline
+De intervalo & Orden y diferencias significativas, pero sin un punto de partida cero natural. (Ej. Temperatura en $^\circ$C). \\
+\hline
+De razón & Orden, diferencias significativas y un cero natural absoluto. Las razones tienen sentido. (Ej. Distancias, pesos). \\
+\hline
+\end{longtblr}
+
+\subsection{Recopilación de Datos y Muestreo}
+Si los datos muestrales no se recopilan de manera apropiada, pueden ser tan inútiles que ningún tratamiento estadístico pueda salvarlos. Las muestras de respuesta voluntaria (autoseleccionadas) suelen estar sesgadas y no son representativas.
+
+\begin{longtblr}{colspec={|Q[l,wd=3.5cm]|Q[l,wd=9cm]|}, rowhead=1}
+\hline
+\textbf{Método} & \textbf{Descripción} \\
+\hline
+Aleatorio simple & Cada muestra posible del mismo tamaño $n$ tiene la misma probabilidad de ser elegida. \\
+\hline
+Sistemático & Se selecciona un punto de inicio y luego cada $k$-ésimo elemento de la población. \\
+\hline
+Estratificado & Se subdivide la población en estratos con características comunes y se extrae una muestra de cada uno. \\
+\hline
+Conglomerados & Se divide el área en secciones, se eligen algunas al azar y se toman todos los miembros de esas secciones. \\
+\hline
+Conveniencia & Se utilizan datos que son muy fáciles de obtener (alto riesgo de sesgo). \\
+\hline
+\end{longtblr}
+
+\subsection{Significancia Estadística vs. Práctica}
+Al sacar conclusiones, se debe determinar si los resultados tienen significancia estadística y significancia práctica.
+\begin{itemize}
+    \item \textbf{Significancia estadística:} Se logra cuando un resultado es muy improbable que ocurra por casualidad. El criterio común es que la probabilidad de ocurrencia por azar sea del $5\%$ o menos:
+    $$ P(\text{evento por casualidad}) \leq 0.05 $$
+    \item \textbf{Significancia práctica:} Ocurre cuando el tratamiento o hallazgo tiene una diferencia lo suficientemente grande como para justificar su uso o ser útil en la realidad, independientemente de los cálculos matemáticos.
+\end{itemize}
