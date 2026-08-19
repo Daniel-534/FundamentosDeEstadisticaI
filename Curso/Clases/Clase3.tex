@@ -154,3 +154,94 @@ Mujer & 25 & 35 & 75 \\
 \end{longtblr}
 
 De manera más general, si se tienen $i$ niveles de estudio, $j$ medios de comunicación preferido y $k$ categorías de sexo, los datos se pueden organizar en una estructura tridimensional donde cada celda $(i, j, k)$ contiene la frecuencia correspondiente.
+
+
+\section{Pensamiento Estadístico}
+
+\subsection{Concepto Clave}
+
+Al finalizar el estudio introductorio de la estadística, el estudiante cuenta con numerosas herramientas analíticas. Sin embargo, efectuar cálculos sin considerar aspectos generales importantes equivale a estar ``equipado peligrosamente''. El pensamiento estadístico exige que, antes de cualquier análisis formal, se tomen en cuenta factores fundamentales que determinan la validez y utilidad de los resultados.
+
+Para aprender a pensar en términos estadísticos, suelen ser más importantes el sentido común y las consideraciones prácticas que la aplicación irreflexiva de fórmulas y cálculos. Para analizar de forma adecuada unos datos, es necesario contar con información adicional que proporcione el contexto adecuado.
+
+Las preguntas fundamentales que guían el pensamiento estadístico son:
+
+\begin{itemize}
+    \item ¿Cuál es el contexto de los datos?
+    \item ¿De qué fuente se obtuvieron?
+    \item ¿Cómo se recabaron?
+    \item ¿Qué se puede concluir a partir de la información?
+    \item Con base en conclusiones estadísticas, ¿qué implicaciones prácticas resultan del análisis?
+\end{itemize}
+
+\subsection{Contexto y Fuente de los Datos}
+
+Siempre se debe tomar en cuenta el contexto de los datos, ya que este determina el análisis estadístico que debe emplearse. El contexto incluye la naturaleza de las variables, las unidades de medición y el propósito del estudio.
+
+Respecto a la fuente, es necesario considerar si esta es objetiva o si existe alguna razón para pensar que está sesgada. No todos los estudios cuentan con fuentes sin sesgo. Se debe permanecer atento y escéptico ante estudios que provienen de fuentes que podrían tener intereses particulares en obtener ciertos resultados.
+
+\subsection{Método de Muestreo}
+
+Al reunir datos muestrales para un estudio, el método de muestreo elegido puede afectar de manera importante la validez de las conclusiones. Un aspecto crítico es que las muestras de respuesta voluntaria (o autoseleccionadas) a menudo están sesgadas, ya que es más probable que los individuos con un interés especial en el tema decidan participar. En una muestra de respuesta voluntaria, los propios sujetos deciden participar, y aunque es posible utilizar métodos estadísticos válidos para analizarlas, los resultados no son necesariamente válidos.
+
+\subsection{Conclusiones e Implicaciones Prácticas}
+
+Al obtener conclusiones a partir de un análisis estadístico, es necesario formular afirmaciones que sean claras para personas sin conocimientos de estadística ni de su terminología. Se debe evitar cuidadosamente realizar afirmaciones que no estén justificadas por el análisis estadístico.
+
+Además de plantear conclusiones claras, también se deben identificar las implicaciones prácticas de los resultados. Una conclusión puede ser estadísticamente correcta pero carecer de relevancia práctica, o viceversa.
+
+\subsection{Significancia Estadística y Significancia Práctica}
+
+La significancia estadística de un estudio difiere de su significancia práctica. Es posible que, con base en los datos muestrales disponibles, se utilicen métodos estadísticos para llegar a la conclusión de que algún tratamiento o hallazgo es eficaz, aunque el sentido común sugiera que la diferencia no es suficiente para justificar su uso práctico.
+
+En términos formales, la significancia estadística se alcanza cuando la probabilidad de obtener el resultado observado por puro azar es muy pequeña. Un criterio común es que se logra significancia estadística si dicha probabilidad es del $5\%$ o menos:
+
+$$P(\text{resultado por azar}) \leq 0.05$$
+
+Sin embargo, un resultado estadísticamente significativo no necesariamente tiene significancia práctica. Por ejemplo, si un tratamiento aumenta la probabilidad de un evento del $50\%$ al $52\%$, el resultado puede ser estadísticamente significativo con una muestra suficientemente grande, pero la diferencia práctica es mínima.
+
+\subsection{Definición de Pensamiento Estadístico}
+
+El pensamiento estadístico incluye el pensamiento crítico y la capacidad de interpretar los resultados. También puede implicar determinar si los resultados son estadísticamente significativos. El pensamiento estadístico va mucho más allá de la simple capacidad de ejecutar cálculos complejos; implica la capacidad de observar el panorama general, tomar en cuenta factores relevantes como el contexto, la fuente de los datos y el método de muestreo, obtener conclusiones e identificar implicaciones prácticas.
+
+\section{Tipos de Datos}
+
+\subsection{Parámetro y Estadístico}
+
+Es importante distinguir entre parámetro y estadístico. Los primeros son cantidades constantes que describen una población; los segundos dependen de la muestra extraída y varían de una muestra a otra.
+
+\begin{itemize}
+    \item \textbf{Parámetro:} es cualquier cantidad constante que describe una característica de la población (por ejemplo, la media poblacional $\mu$ o la proporción poblacional $p$).
+    \item \textbf{Estadístico:} es cualquier función de las variables aleatorias que constituyen una muestra extraída de la población (por ejemplo, la media muestral $\bar{x}$ o la proporción muestral $\hat{p}$).
+\end{itemize}
+
+La notación habitual asocia parámetros con letras griegas y estadísticos con letras latinas:
+
+$$\text{Parámetros poblacionales: } \mu,\; \sigma,\; p \qquad \text{Estadísticos muestrales: } \bar{x},\; s,\; \hat{p}$$
+
+\subsection{Datos Cuantitativos}
+
+Los datos cuantitativos (o numéricos) consisten en números que representan conteos o mediciones. Se subdividen en dos categorías:
+
+\begin{itemize}
+    \item \textbf{Datos discretos:} resultan cuando el número de posibles valores es finito o contable. Suelen tomar valores enteros y existe separación o interrupción entre valores consecutivos. Ejemplos: número de hijos, cantidad de automóviles, número de defectos en un lote.
+    \item \textbf{Datos continuos:} resultan de un infinito de posibles valores que pueden asociarse a puntos de una escala continua, cubriendo un rango sin huecos ni interrupciones. Pueden tomar cualquier valor dentro de un intervalo. Ejemplos: estatura, peso, temperatura, tiempo de reacción.
+\end{itemize}
+
+\subsection{Datos Cualitativos}
+
+Los datos cualitativos (también llamados categóricos o de atributo) se dividen en diferentes categorías que se distinguen por alguna característica no numérica. No se pueden medir numéricamente de forma directa. Ejemplos: nivel de estudios, género, religión, raza, estrato socioeconómico, nacionalidad, color de la piel.
+
+\subsection{Niveles de Medición}
+
+Otra forma de clasificar los datos consiste en usar cuatro niveles de medición. Cuando se aplica la estadística a problemas reales, el nivel de medición de los datos es un factor importante para determinar el procedimiento estadístico adecuado.
+
+\textbf{Nivel nominal.} Los datos consisten exclusivamente en nombres, etiquetas o categorías cuyos valores solo poseen la propiedad de identidad ($a = a$, $a \neq b$). No se pueden organizar en un esquema de orden ni realizar operaciones aritméticas con ellos. Ejemplo: color de ojos, género, ciudad de residencia.
+
+\textbf{Nivel ordinal.} Los datos pueden acomodarse en algún orden o jerarquía, existe transitividad ($a < b$ y $b < c$ implica $a < c$), aunque no es posible determinar diferencias entre los valores o tales diferencias carecen de significado. Ejemplo: clasificaciones de universidades, nivel de satisfacción (bajo, medio, alto).
+
+\textbf{Nivel de intervalo.} En contraste con el nivel ordinal, esta escala tiene diferencias precisas entre unidades de medida. Establece un orden en las posiciones relativas y la diferencia entre dos valores cualesquiera tiene significado. Sin embargo, no posee un punto de partida cero inherente (natural); el cero es relativo y arbitrario, por lo que las razones no tienen sentido. Por ejemplo, una temperatura de $0^\circ\text{C}$ no indica ausencia de temperatura, y no es válido afirmar que $50^\circ\text{F}$ es el doble de temperatura que $25^\circ\text{F}$. Un coeficiente intelectual de $0$ no implica ausencia de inteligencia.
+
+\textbf{Nivel de razón.} Posee todas las características del nivel de intervalo, con la propiedad adicional de un punto de partida cero inherente donde cero indica que nada de la cantidad está presente. Para valores en este nivel, tanto las diferencias como las proporciones tienen significado. Ejemplos: peso ($60\;\text{kg}$ es un $20\%$ más pesado que $50\;\text{kg}$), distancia, tiempo, edad. El cero absoluto o natural representa la nulidad de lo que se estudia.
+
+Una regla práctica para distinguir entre nivel de intervalo y nivel de razón es considerar si la expresión ``dos veces'' tiene sentido: si una cantidad es el doble de la otra y esta afirmación es válida, se aplica el nivel de razón; en caso contrario, se aplica el nivel de intervalo.
