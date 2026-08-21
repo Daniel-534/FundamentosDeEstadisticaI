@@ -1,0 +1,140 @@
+\documentclass[a4paper]{article}
+
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage[margin=2cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+\usepackage{parskip}
+\usepackage[most]{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{mathrsfs}
+
+
+% cabecera
+\pagestyle{fancy}
+\fancyhead[l]{Fundamentos De Estadística I}
+\fancyhead[c]{Problemset 1}
+\fancyhead[r]{\today}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0.2pt} % linea horizontal
+
+\begin{document}
+\tableofcontents
+
+\section{Ejercicio 1-2 (7-14): Calculadoras}
+
+Cuando los 25 estudiantes de estadística encienden su calculadora TI-84 Plus, todas funcionan adecuadamente. Determine si este acontecimiento es: a) imposible, b) posible pero muy improbable, c) posible y probable.
+
+\subsection{Solución}
+
+\textbf{c) Posible y probable.} Las calculadoras TI-84 Plus son dispositivos electrónicos confiables con una tasa de falla muy baja. Que 25 calculadoras funcionen correctamente es un evento esperado y consistente con la experiencia cotidiana.
+
+\section{Ejercicio 1-2 (23-26): Cirugía y entablillado}
+
+Un estudio comparó cirugía y entablillado para el síndrome del túnel carpiano. De 73 pacientes con cirugía, la tasa de éxito fue 92\%. De 83 pacientes con entablillado, la tasa fue 72\%. Si no existiera diferencia real, la probabilidad de obtener tales resultados es 1 en 1000.
+
+\begin{enumerate}
+    \item[a)] ¿La cirugía es mejor que el entablillado?
+    \item[b)] ¿El resultado es estadísticamente significativo?
+    \item[c)] ¿Tiene significancia práctica?
+    \item[d)] ¿Debe la cirugía ser el tratamiento recomendado?
+\end{enumerate}
+
+\subsection{Solución}
+
+\begin{enumerate}
+    \item[a)] Sí. La tasa de éxito de 92\% frente a 72\% indica que la cirugía produce mejores resultados.
+    \item[b)] Sí. La probabilidad de 1/1000 $= 0.001$ es extremadamente baja (menor que 0.05), lo que indica que la diferencia observada no se debe al azar.
+    \item[c)] Sí. Una diferencia de 20 puntos porcentuales (92\% vs.~72\%) es clínicamente relevante.
+    \item[d)] No necesariamente. Aunque la cirugía es estadísticamente superior, la recomendación debe considerar riesgos quirúrgicos, costos y preferencias del paciente. La significancia estadística no implica automáticamente una recomendación clínica.
+\end{enumerate}
+
+\section{Ejercicio 1-3 (30): Encuesta sobre clonación}
+
+Gallup encuestó a 1012 adultos elegidos al azar; el 9\% considera que la clonación humana debía permitirse. Identifique: a) la muestra, b) la población, y determine si la muestra parece representativa.
+
+\subsection{Solución}
+
+\begin{enumerate}
+    \item[a)] \textbf{Muestra:} Los 1012 adultos seleccionados al azar que respondieron la encuesta.
+    \item[b)] \textbf{Población:} Todos los adultos (de la región o país donde se aplicó la encuesta).
+\end{enumerate}
+
+La muestra \textbf{parece representativa} porque fue seleccionada al azar, lo cual reduce el sesgo de selección. Sin embargo, la representatividad también depende de la tasa de respuesta y del método exacto de selección.
+
+\section{Ejercicio 1-3 (34): Interpretación de encuesta política}
+
+Se codificaron las preferencias políticas: 0 (demócratas), 1 (republicanos), 2 (independientes), 3 (otra). La media de las cifras codificadas resultó ser 0.95. ¿Cómo se interpreta este valor?
+
+\subsection{Solución}
+
+\textbf{No tiene interpretación válida.} Los códigos 0, 1, 2, 3 son datos en nivel \textbf{nominal}; solo representan categorías sin orden ni magnitud numérica. Calcular una media de estos códigos carece de sentido, ya que el resultado $0.95$ no corresponde a ninguna categoría ni transmite información significativa sobre la distribución de preferencias. Lo correcto sería reportar frecuencias o porcentajes por categoría.
+
+\section{Ejercicio 1-4 (23): Porcentajes en una encuesta Gallup}
+
+\begin{enumerate}
+    \item[a)] En una encuesta a 734 usuarios de Internet, el 49\% realiza compras en línea. ¿Cuál es el número real?
+    \item[b)] De 734 encuestados, 323 realizan planes de viaje consultando información en línea. ¿Cuál es el porcentaje?
+\end{enumerate}
+
+\subsection{Solución}
+
+\begin{enumerate}
+    \item[a)]
+    $$0.49 \times 734 = 359.66 \approx 360 \text{ usuarios}$$
+
+    \item[b)]
+    $$\frac{323}{734} \times 100\% \approx 44\%$$
+\end{enumerate}
+
+\section{Ejercicio 1-4 (29): Falsificación de datos}
+
+Un investigador reportó porcentajes de éxito para seis grupos de 20 ratones cada uno: 53\%, 58\%, 63\%, 46\%, 48\%, 67\%. ¿Cuál es la principal falla?
+
+\subsection{Solución}
+
+Con 20 ratones por grupo, cada ratón representa:
+$$\frac{1}{20} = 0.05 = 5\%$$
+
+Por tanto, los porcentajes válidos deben ser múltiplos de 5\%:
+$$0\%,\; 5\%,\; 10\%,\; \ldots,\; 95\%,\; 100\%$$
+
+Los valores reportados (53\%, 58\%, 63\%, 46\%, 48\%, 67\%) \textbf{no son múltiplos de 5\%}, lo cual es imposible con grupos de exactamente 20 ratones. Esto constituye una evidencia clara de que los datos fueron falsificados.
+
+\section{Ejercicio 1-5 (24): Muestra estratificada}
+
+Se encuestan exactamente 500 hombres y 500 mujeres seleccionados al azar entre todos los adultos de Estados Unidos (suponiendo igual cantidad de hombres y mujeres adultos). ¿Este plan produce una muestra aleatoria? ¿Una muestra aleatoria simple?
+
+\subsection{Solución}
+
+\begin{itemize}
+    \item \textbf{¿Muestra aleatoria?} Sí. Cada individuo tiene una probabilidad conocida y no nula de ser seleccionado.
+    \item \textbf{¿Muestra aleatoria simple?} No. En una muestra aleatoria simple, toda combinación posible de 1000 individuos debe tener la misma probabilidad de ser elegida. Al fijar exactamente 500 hombres y 500 mujeres, se excluyen muestras válidas (por ejemplo, una muestra con 600 hombres y 400 mujeres), por lo que no todas las muestras posibles tienen igual probabilidad de selección.
+\end{itemize}
+
+Se trata de una \textbf{muestra estratificada} (estratos: hombres y mujeres).
+
+\section{Ejercicio 1-5 (32): Diseño de muestreo}
+
+Describa procedimientos para obtener una muestra de graduados universitarios de cada tipo: aleatoria, sistemática, de conveniencia, estratificada y por conglomerados.
+
+\subsection{Solución}
+
+\begin{itemize}
+    \item \textbf{Aleatoria simple:} Numerar todos los graduados del registro universitario. Usar un generador de números aleatorios para seleccionar $n$ individuos.
+
+    \item \textbf{Sistemática:} Obtener la lista completa de graduados. Elegir un inicio aleatorio $r$ y seleccionar cada $k$-ésimo graduado, donde $k = N/n$ ($N$: total de graduados, $n$: tamaño deseado).
+
+    \item \textbf{De conveniencia:} Encuestar a los graduados que asisten a una ceremonia de graduación o que se encuentran disponibles en el campus el día de la encuesta.
+
+    \item \textbf{Estratificada:} Dividir los graduados por facultad (ingeniería, medicina, derecho, etc.). Seleccionar aleatoriamente una cantidad proporcional de graduados de cada facultad.
+
+    \item \textbf{Por conglomerados:} Dividir los graduados por cohortes de graduación (2018, 2019, 2020, etc.). Seleccionar aleatoriamente algunas cohortes y encuestar a \textit{todos} los graduados de esas cohortes.
+\end{itemize}
+
+\end{document}
