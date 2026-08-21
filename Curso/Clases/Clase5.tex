@@ -1,0 +1,202 @@
+\chapter{Clase 5}
+
+\section{Descripción, exploración y comparación de datos}
+
+\subsection{Introducción y características de los datos}
+El análisis de conjuntos de datos extensos requiere organizar, resumir y representar la información de una forma conveniente y significativa, lo cual corresponde al ámbito de la Estadística Descriptiva. Los datos se pueden resumir de forma numérica en tablas o de forma visual en gráficas, dependiendo de la naturaleza de los datos. El objetivo principal no es solo generar una tabla o gráfica, sino analizar y comprender lo que estos indican sobre la distribución y características generales del conjunto.
+
+Las características importantes que se deben evaluar en los datos son:
+\begin{itemize}
+    \item \textbf{Centro:} Valor representativo o promedio que indica la localización de la mitad del conjunto de los datos.
+    \item \textbf{Variación:} Medida de la cantidad en que los valores de los datos varían entre sí.
+    \item \textbf{Distribución:} Naturaleza o forma de la distribución de los datos (por ejemplo, forma de campana).
+    \item \textbf{Datos distantes (Atípicos):} Valores muestrales que están muy alejados de la vasta mayoría de los demás valores de la muestra.
+    \item \textbf{Tiempo:} Características cambiantes de los datos a través del tiempo.
+\end{itemize}
+
+\subsection{Distribuciones de frecuencias}
+Una distribución de frecuencias (o tabla de frecuencias) es una herramienta fundamental cuando se trabaja con conjuntos grandes de datos. Consiste en listar los distintos valores posibles de los datos (ya sea de forma individual o agrupados en intervalos) junto con sus frecuencias correspondientes, es decir, el número de veces que ocurren dichos valores.
+
+A continuación, se presentan ejemplos de tablas de frecuencias para datos categóricos y cuantitativos agrupados:
+
+\begin{longtblr}{colspec={|Q[l,wd=7cm]|Q[c,wd=3cm]|}, rowhead=1}
+\hline
+\textbf{Estado Civil} & \textbf{Frecuencia ($f_i$)} \\
+\hline
+Casada & 100 \\
+Soltera & 56 \\
+Sep/Div & 30 \\
+Viuda & 14 \\
+\hline
+\textbf{Total} & \textbf{200} \\
+\hline
+\end{longtblr}
+
+\begin{longtblr}{colspec={|Q[l,wd=7cm]|Q[c,wd=3cm]|}, rowhead=1}
+\hline
+\textbf{Niveles de Cotinina} & \textbf{Frecuencia ($f_i$)} \\
+\hline
+0--99 & 11 \\
+100--199 & 12 \\
+200--299 & 14 \\
+300--399 & 1 \\
+400--499 & 2 \\
+\hline
+\end{longtblr}
+
+\subsubsection{Conceptos básicos de las clases}
+Para datos cuantitativos agrupados, se definen los siguientes elementos:
+\begin{itemize}
+    \item \textbf{Límites de clase inferiores y superiores:} Son las cifras más pequeñas y más grandes, respectivamente, que pueden pertenecer a las diferentes clases.
+    \item \textbf{Fronteras de clase:} Cifras utilizadas para separar las clases sin dejar espacios vacíos entre ellas.
+    \item \textbf{Marcas de clase ($c_i$):} Son los puntos medios de las clases.
+    \item \textbf{Anchura de clase:} La diferencia entre dos límites de clase inferiores consecutivos.
+\end{itemize}
+
+\subsection{Procedimiento de construcción para datos cuantitativos}
+Para construir una distribución de frecuencias de manera sistemática, se siguen los siguientes pasos matemáticos:
+
+\begin{enumerate}
+    \item \textbf{Elegir el número de intervalos ($k$):} Generalmente entre 5 y 20 clases de igual tamaño. Se pueden utilizar criterios como la raíz cuadrada del número de datos, la ley de Sturges:
+    $$ k = 1 + 3.322 \log n $$
+    O el criterio alternativo:
+    $$ k \le 5 \log n $$
+    \item \textbf{Hallar el rango de los datos ($R$):}
+    $$ R = x_{\max} - x_{\min} $$
+    \item \textbf{Definir el tamaño o longitud del intervalo de clase ($h$):}
+    $$ h \approx \frac{R}{k} $$
+    De modo que $h \cdot k \ge R$ (Rango ajustado).
+    \item \textbf{Establecer las fronteras y límites:} Las fronteras de clase suelen ser cerradas al lado izquierdo. Los límites no deben ser ambiguos ni coincidir con valores posibles de los datos (se recomienda usar una cifra decimal más).
+\end{enumerate}
+
+\subsubsection{Tipos de frecuencias}
+Dado un conjunto de $n$ observaciones, para cada intervalo $i$ se calculan:
+\begin{itemize}
+    \item $n_i$: Frecuencia absoluta (conteo de datos en el intervalo).
+    \item $N_i$: Frecuencia acumulada en cada intervalo.
+    \item $f_i = \frac{n_i}{n}$: Frecuencia relativa.
+    \item $F_i = \frac{N_i}{n}$: Frecuencia relativa acumulada.
+    \item $c_i$: Marca de clase (punto medio del intervalo).
+\end{itemize}
+
+La estructura general de la tabla resultante es la siguiente:
+
+\begin{longtblr}{colspec={|*{8}{X[c]}|}, rowhead=1, cells={font=\small}}
+\hline
+\textbf{Intervalo} & \textbf{Lím. Inf.} & \textbf{Lím. Sup.} & \textbf{$c_i$} & \textbf{$N_i$} & \textbf{$n_i$} & \textbf{$F_i$} & \textbf{$f_i$} \\
+\hline
+1: $[\,\cdot,\cdot\,)$ & & & & & & & \\
+2: $[\,\cdot,\cdot\,)$ & & & & & & & \\
+$\vdots$ & & & & & & & \\
+$k$: $[\,\cdot,\cdot\,)$ & & & & & & & \\
+\hline
+\end{longtblr}
+
+\subsection{Implementación tecnológica}
+
+\subsubsection{Construcción en Excel}
+Para automatizar el proceso en hojas de cálculo, se utilizan las siguientes funciones y atajos:
+\begin{verbatim}
+n: Número de observaciones =contar()
+Máximo =Max()
+Mínimo =Min()
+Rango R= Max()-Min()
+K:# de intervalos k= 1+ 3.322 log n
+Amplitud R/K
+Frecuencias =Frecuencia(datos; límites superiores)
+\end{verbatim}
+\textit{Nota:} La instrucción de frecuencia se aplica en la primera casilla y se propaga al resto seleccionando las casillas, yendo a la barra de funciones y ejecutando \texttt{CTRL + +}.
+Para las etiquetas de intervalos se puede usar:
+\begin{verbatim}
+=CONCATENA("(";lim inf;"-";lim sup;"]")
+\end{verbatim}
+Para el gráfico de barras (histograma), se señalan las marcas de clase y frecuencias, se inserta el gráfico de barras, y en el formato de la serie de datos se establece el ancho de barra en ``0'' para que queden adyacentes.
+
+\subsubsection{Construcción en R}
+Utilizando la librería \texttt{agricolae} para tablas de frecuencia:
+\begin{verbatim}
+install.packages(agricolae) # Instalamos librería
+library(agricolae)          # Descargamos la librería
+Datos                       # Llamamos los datos
+Variable5<-Datos$Variable5  # Extraemos la variable
+Variable5
+attach(Datos)               # Desagregamos la base de datos
+listaVariable5<-hist(Variable5, plot=FALSE)
+tablafq<-table.freq(listaVariable5)
+\end{verbatim}
+
+\subsection{Histogramas y Distribución Normal}
+El histograma de frecuencias es el método gráfico más utilizado para datos cuantitativos. Consiste en un conjunto de rectángulos con bases en el eje $x$, centrados en la marca de clase, con longitudes iguales a los intervalos de clase y áreas (o alturas, si la anchura es constante) proporcionales a las frecuencias.
+
+\begin{longtblr}{colspec={|Q[l,wd=7cm]|Q[c,wd=3cm]|}, rowhead=1}
+\hline
+\textbf{Intervalo} & \textbf{Frecuencia Absoluta} \\
+\hline
+$[158,159.5)$ & 1 \\
+$[159.5,161)$ & 15 \\
+$[161,162.5)$ & 15 \\
+$[162.5,164)$ & 33 \\
+$[164,165.5)$ & 50 \\
+$[165.5,167)$ & 35 \\
+$[167,168.5)$ & 27 \\
+$[168.5,170)$ & 14 \\
+$[170,172)$ & 0 \\
+\hline
+\end{longtblr}
+
+Un \textbf{histograma de frecuencias relativas} mantiene la misma forma y escala horizontal, pero la escala vertical se marca con proporciones o porcentajes, lo cual es preferible para fines comparativos.
+
+\subsubsection{Distribución Normal}
+Las distribuciones de frecuencias pueden revelar la naturaleza de los datos. Una distribución normal (o en forma de campana) se caracteriza por:
+\begin{enumerate}
+    \item Al inicio las frecuencias son bajas, después se incrementan hasta un punto máximo y luego disminuyen.
+    \item La distribución es aproximadamente simétrica; las frecuencias tienden a distribuirse de manera uniforme a ambos lados de la frecuencia máxima, como una imagen en un espejo.
+\end{enumerate}
+
+\subsection{Otras técnicas visuales y gráficas}
+
+\subsubsection{Gráfica de Pareto}
+Es una gráfica de barras para datos cualitativos donde las barras se ordenan de mayor a menor frecuencia (de izquierda a derecha). Las escalas verticales pueden representar frecuencias absolutas o relativas. Es útil para resaltar las categorías más importantes.
+
+\begin{longtblr}{colspec={|Q[l,wd=7cm]|Q[c,wd=3cm]|}, rowhead=1}
+\hline
+\textbf{Nivel de Estudios} & \textbf{Frecuencia} \\
+\hline
+Bachiller & 89 \\
+Pregrado & 80 \\
+Técnica & 68 \\
+Básica & 62 \\
+Postgrado & 28 \\
+\hline
+\end{longtblr}
+
+Implementación en R para gráficas de Pareto:
+\begin{verbatim}
+install.packages('qcc')
+library(qcc)
+TablaVarCategorica<- table(VarCategorica)
+pareto.chart(TablaVarCategorica)
+\end{verbatim}
+
+\subsubsection{Polígonos de frecuencias}
+Se obtienen graficando los puntos $(c_i, n_i)$, donde $c_i$ es la marca de clase y $n_i$ la frecuencia correspondiente, uniendo dichos puntos con segmentos de recta. Es usual cerrar los polígonos agregando líneas en los extremos hasta que toquen el eje horizontal. Sugieren curvas de frecuencias continuas y suaves.
+
+\subsubsection{Gráficas circulares}
+Presentan datos cualitativos como rebanadas de un pastel, donde el tamaño (ángulo) de cada rebanada es proporcional al conteo de frecuencia de la categoría.
+
+\subsubsection{Diagrama de tallos y hojas (Stem-and-Leaf)}
+Técnica que divide cada valor numérico en dos partes: el ``tallo'' (dígito principal) y la ``hoja'' (dígito secundario). Los tallos se disponen en el eje vertical y las hojas en el horizontal. Tiene la ventaja de mostrar la forma de la distribución conservando los valores originales de los datos.
+
+\subsection{Formas de las curvas de frecuencias}
+Las curvas de frecuencias pueden asumir diversas formas:
+\begin{itemize}
+    \item \textbf{Simétricas (Campana):} Las observaciones equidistantes del máximo central tienen la misma frecuencia (ej. Distribución Normal).
+    \item \textbf{Sesgadas a la derecha (Sesgo positivo):} No tienen simetría; la cola al lado derecho del máximo central es más larga (ej. Distribución Chi-cuadrado).
+    \item \textbf{Sesgadas a la izquierda (Sesgo negativo):} La cola al lado izquierdo del máximo central es más larga.
+\end{itemize}
+
+\subsection{Diagramas de dispersión y gráficas de puntos}
+\begin{itemize}
+    \item \textbf{Diagramas de dispersión:} Gráfica de datos apareados $(x, y)$ con un eje horizontal $x$ y un eje vertical $y$. Cada valor de un conjunto corresponde a un valor de un segundo conjunto, permitiendo visualizar la relación entre dos variables.
+    \item \textbf{Gráficas de puntos:} Consiste en marcar cada valor de un dato como un punto a lo largo de una escala de valores unidimensional. Los puntos que representan valores iguales se amontonan o apilan verticalmente.
+\end{itemize}

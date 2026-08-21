@@ -1,0 +1,83 @@
+\chapter{Clase 4}
+
+\section{Pensamiento Crítico y Comunicación Estadística}
+
+La presentación de resultados estadísticos debe permitir que el lector evalúe la información sin inducir interpretaciones engañosas. Los usos inadecuados pueden originarse tanto en manipulaciones deliberadas como en errores cometidos por desconocimiento.
+
+\subsection{Distorsiones en las Gráficas}
+
+Una gráfica puede exagerar u ocultar diferencias aun cuando los valores representados sean correctos. Para evaluar una representación gráfica se deben revisar, como mínimo, los siguientes aspectos:
+
+\begin{itemize}
+    \item El origen, la escala y los intervalos de los ejes.
+    \item La correspondencia entre el tamaño de los elementos gráficos y las cantidades representadas.
+    \item El uso de figuras tridimensionales para datos que solo requieren una dimensión.
+    \item El periodo seleccionado y la posible omisión de observaciones relevantes.
+    \item La presencia de títulos, unidades y etiquetas suficientes para interpretar la gráfica.
+\end{itemize}
+
+Un eje vertical truncado puede hacer que una diferencia pequeña parezca considerable. Del mismo modo, representar cantidades mediante áreas o volúmenes puede deformar su comparación si las dimensiones de las figuras no se ajustan proporcionalmente.
+
+\subsection{Resultados Autoinformados}
+
+Cuando sea posible, las variables deben medirse directamente. Los datos declarados por los participantes pueden contener redondeos, fallos de memoria o respuestas deliberadamente inexactas, especialmente en temas sensibles como ingresos, hábitos o antecedentes personales.
+
+La interpretación también debe considerar preguntas que inducen una respuesta, el orden del cuestionario, la falta de respuesta, los datos faltantes, los conflictos de interés y la presentación de cifras con una precisión mayor que la permitida por el método de medición.
+
+\subsection{Lista de Verificación para Interpretar Resultados}
+
+Antes de aceptar una conclusión estadística conviene comprobar:
+
+\begin{enumerate}
+    \item Si la fuente y el propósito del estudio están claramente identificados.
+    \item Si las unidades, escalas y tamaños muestrales están informados.
+    \item Si la representación gráfica es proporcional y utiliza el contexto completo.
+    \item Si las conclusiones se limitan a lo que permiten los datos y el diseño del estudio.
+    \item Si se distinguen la precisión numérica, la incertidumbre y la relevancia práctica.
+\end{enumerate}
+
+\section{Muestreo Probabilístico y Diseños Multietápicos}
+
+\subsection{Muestreo Probabilístico}
+
+En un diseño probabilístico, cada elemento de la población posee una probabilidad conocida y mayor que cero de ser seleccionado. Esta propiedad permite calcular ponderaciones y cuantificar la incertidumbre asociada a las estimaciones.
+
+La probabilidad de inclusión no tiene que ser igual para todos los elementos. Cuando las probabilidades son diferentes, cada observación puede recibir un peso que compense su mayor o menor posibilidad de formar parte de la muestra.
+
+\subsection{Muestreo Multietápico}
+
+El muestreo multietápico selecciona unidades de manera sucesiva y combina varios procedimientos. Por ejemplo, un estudio educativo nacional podría seguir estas etapas:
+
+\begin{longtblr}{colspec={|Q[c,wd=2cm]|Q[l,wd=4cm]|Q[l,wd=6.5cm]|}, rowhead=1}
+\hline
+\textbf{Etapa} & \textbf{Unidad seleccionada} & \textbf{Procedimiento} \\
+\hline
+1 & Municipios & Seleccionar municipios de distintas regiones. \\
+\hline
+2 & Instituciones & Elegir instituciones dentro de cada municipio seleccionado. \\
+\hline
+3 & Estudiantes & Seleccionar estudiantes dentro de cada institución elegida. \\
+\hline
+\end{longtblr}
+
+Este diseño reduce costos y facilita el trabajo de campo en poblaciones extensas. Sin embargo, el análisis debe considerar todas las etapas de selección, pues tratar los datos como si procedieran de una muestra aleatoria simple puede subestimar la incertidumbre.
+
+\section{Organización de Datos Multidimensionales}
+
+\subsection{Matriz de Datos}
+
+Un conjunto de datos puede representarse mediante una matriz
+
+$$
+X = (x_{ij}), \qquad i=1,\ldots,n, \qquad j=1,\ldots,p,
+$$
+
+donde cada fila corresponde a una unidad de observación, cada columna representa una variable y $x_{ij}$ es el valor de la variable $j$ observado en la unidad $i$. Esta organización facilita el análisis simultáneo de varias características.
+
+\subsection{Tablas de Contingencia}
+
+Cuando las variables son categóricas, sus combinaciones pueden resumirse en tablas de contingencia. Cada celda contiene la frecuencia correspondiente a una combinación de categorías. Las sumas por filas o columnas se denominan \textbf{frecuencias marginales}, mientras que las proporciones calculadas dentro de una fila o columna describen \textbf{distribuciones condicionales}.
+
+\subsection{Relaciones entre Varias Variables}
+
+En un conjunto multidimensional, una relación observada entre dos variables puede cambiar al incorporar una tercera. Por ello, además de examinar asociaciones globales, conviene comparar grupos y estudiar posibles interacciones. La organización multidimensional permite identificar patrones que no son visibles en resúmenes de una sola variable.
