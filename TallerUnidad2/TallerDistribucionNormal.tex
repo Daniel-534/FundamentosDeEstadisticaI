@@ -1,0 +1,365 @@
+\documentclass[11pt]{article}
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.65\baselineskip}
+
+\title{Distribución normal y puntuaciones $z$}
+\author{Material de apoyo}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{La distribución normal}
+
+Una variable aleatoria continua $X$ tiene distribución normal si sus valores siguen una curva simétrica con forma de campana. Se escribe $X\sim N(\mu,\sigma^2)$, donde $\mu$ es la media y $\sigma$ la desviación estándar. La media determina el centro y la desviación estándar indica qué tan dispersos están los datos. El área total bajo la curva es 1, y las colas se acercan al eje horizontal sin tocarlo.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  width=0.9\linewidth,
+  height=5.5cm,
+  domain=40:160,
+  samples=180,
+  xmin=40, xmax=160,
+  ymin=0, ymax=0.040,
+  axis lines=left,
+  xlabel={$x$},
+  ylabel={$f_X(x)$},
+  xtick={55,70,85,100,115,130,145},
+  xticklabels={$\mu-3\sigma$,$\mu-2\sigma$,$\mu-\sigma$,$\mu$,$\mu+\sigma$,$\mu+2\sigma$,$\mu+3\sigma$},
+  ytick=\empty,
+  title={Una distribución normal: $X\sim N(100,15^2)$}
+]
+\addplot[draw=none,fill=blue!18,domain=85:115,samples=100] {1/(15*sqrt(2*pi))*exp(-((x-100)^2)/(2*15^2))} \closedcycle;
+\addplot[blue!75!black,thick] {1/(15*sqrt(2*pi))*exp(-((x-100)^2)/(2*15^2))};
+\addplot[black,dashed] coordinates {(100,0)(100,0.029)};
+\addplot[black,dotted] coordinates {(85,0)(85,0.017)};
+\addplot[black,dotted] coordinates {(115,0)(115,0.017)};
+\node at (axis cs:100,0.034) [anchor=south] {$\mu=$ media = mediana = moda};
+\node at (axis cs:85,0.008) [anchor=north] {inflexión};
+\node at (axis cs:115,0.008) [anchor=north] {inflexión};
+\end{axis}
+\end{tikzpicture}
+\caption{El área sombreada entre $\mu-\sigma$ y $\mu+\sigma$ es aproximadamente el 68.27\% del total.}
+\label{fig:normal-general}
+\end{figure}
+
+\textbf{Características principales:}
+\begin{itemize}
+  \item La curva es simétrica respecto a $\mu$; por ello, media, mediana y moda coinciden.
+  \item Los puntos de inflexión están en $\mu-\sigma$ y $\mu+\sigma$.
+  \item Aproximadamente el 68\%, 95\% y 99.7\% de los valores están, respectivamente, a una, dos y tres desviaciones estándar de la media.
+\end{itemize}
+
+\section{La normal estándar}
+
+La normal estándar es una distribución normal particular con media 0 y desviación estándar 1. Se representa por $Z\sim N(0,1)$, y su densidad es
+\[
+\varphi(z)=\frac{1}{\sqrt{2\pi}}e^{-z^2/2}.
+\]
+Para convertir un valor $x$ de cualquier normal a la escala estándar se calcula su puntuación $z$:
+\[
+z=\frac{x-\mu}{\sigma}.
+\]
+Esta puntuación indica cuántas desviaciones estándar está $x$ por encima o por debajo de la media. Una puntuación positiva está por encima de la media y una negativa, por debajo.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  width=0.86\linewidth,
+  height=5.2cm,
+  domain=-3.5:3.5,
+  samples=180,
+  xmin=-3.5, xmax=3.5,
+  ymin=0, ymax=0.44,
+  axis lines=left,
+  xlabel={$z$ (desviaciones estándar desde la media)},
+  ylabel={$\varphi(z)$},
+  xtick={-3,-2,-1,0,1,2,3},
+  ytick=\empty,
+  title={$Z\sim N(0,1)$: media $0$, desviación estándar $1$}
+]
+\addplot[draw=none,fill=orange!35,domain=-1:1,samples=100] {1/sqrt(2*pi)*exp(-x^2/2)} \closedcycle;
+\addplot[blue!75!black,thick] {1/sqrt(2*pi)*exp(-x^2/2)};
+\addplot[black,dashed] coordinates {(0,0)(0,0.40)};
+\addplot[black,dotted] coordinates {(-1,0)(-1,0.25)};
+\addplot[black,dotted] coordinates {(1,0)(1,0.25)};
+\node at (axis cs:0,0.13) {$P(-1<Z<1)\approx68.27\%$};
+\end{axis}
+\end{tikzpicture}
+\caption{La normal estándar permite usar una sola tabla de áreas para distintas distribuciones normales.}
+\label{fig:normal-estandar}
+\end{figure}
+
+\section{Cálculo de probabilidades con una tabla $\Phi(z)$}
+
+La tabla estándar de este material da el área acumulada desde la izquierda:
+\[
+\Phi(z)=P(Z\le z).
+\]
+Después de estandarizar los límites, se aplican estas reglas:
+\begin{align*}
+P(X\le x)&=\Phi\!\left(\frac{x-\mu}{\sigma}\right),\\
+P(X>x)&=1-\Phi\!\left(\frac{x-\mu}{\sigma}\right),\\
+P(a<X<b)&=\Phi\!\left(\frac{b-\mu}{\sigma}\right)-\Phi\!\left(\frac{a-\mu}{\sigma}\right).
+\end{align*}
+Como $X$ es continua, usar $<$ o $\le$ en un límite no cambia la probabilidad.
+
+\subsection{Ejemplo: hallar una probabilidad}
+Las calificaciones de un examen se distribuyen aproximadamente como $X\sim N(70,10^2)$. ¿Qué proporción de estudiantes obtiene más de 85 puntos?
+
+Primero se convierte 85 a puntuación $z$:
+\[
+z=\frac{85-70}{10}=1.50.
+\]
+En la tabla acumulada, $\Phi(1.50)=0.9332$. La pregunta pide el área a la derecha, así que se resta de 1:
+\[
+P(X>85)=P(Z>1.50)=1-\Phi(1.50)=1-0.9332=0.0668.
+\]
+Por tanto, aproximadamente el 6.68\% de los estudiantes obtiene más de 85 puntos.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  width=0.82\linewidth,
+  height=4.8cm,
+  domain=-3.5:3.5,
+  samples=180,
+  xmin=-3.5, xmax=3.5,
+  ymin=0, ymax=0.44,
+  axis lines=left,
+  xlabel={$z$},
+  ylabel={Densidad},
+  xtick={-3,-2,-1,0,1,1.5,2,3},
+  xticklabels={$-3$,$-2$,$-1$,$0$,$1$,$1.50$,$2$,$3$},
+  ytick=\empty,
+  title={Probabilidad de obtener más de 85 puntos}
+]
+\addplot[draw=none,fill=orange!40,domain=1.5:3.5,samples=100] {1/sqrt(2*pi)*exp(-x^2/2)} \closedcycle;
+\addplot[blue!75!black,thick] {1/sqrt(2*pi)*exp(-x^2/2)};
+\addplot[black,dashed,thick] coordinates {(1.5,0)(1.5,0.13)};
+\node at (axis cs:2.35,0.075) {$0.0668$};
+\end{axis}
+\end{tikzpicture}
+\caption{El área sombreada a la derecha de $z=1.50$ es $P(X>85)$.}
+\label{fig:probabilidad}
+\end{figure}
+
+\subsection{Ejemplo: hallar $z$ a partir del área acumulada}
+Suponga ahora que se conoce el área acumulada $\Phi(z)=0.9750$ y se quiere encontrar $z$. Se busca $0.9750$ en el cuerpo de la tabla y se lee el valor correspondiente:
+\[
+\Phi(z)=0.9750\quad\Longrightarrow\quad z\approx1.96.
+\]
+La comprobación es que la tabla da $\Phi(1.96)\approx0.9750$. El valor buscado está 1.96 desviaciones estándar por encima de la media. Por ejemplo, si $X\sim N(500,20^2)$, el valor original asociado a esa área es
+\[
+x=\mu+z\sigma=500+(1.96)(20)=539.2.
+\]
+Así, aproximadamente el 97.5\% de los valores queda por debajo de 539.2.
+
+\clearpage
+\section*{II. Estandarización y desestandarización}
+
+Para calcular probabilidades, primero se convierte cada valor $x$ a $z=(x-\mu)/\sigma$ y se consulta $\Phi(z)$. Si se busca un valor original a partir de un área acumulada, se encuentra primero $z$ en la tabla y luego se usa $x=\mu+z\sigma$.
+
+\subsection*{Ejercicio 1: estandarizar para calcular probabilidades}
+Las puntuaciones de un examen siguen $X\sim N(70,10^2)$. Calcule (a) la proporción de puntuaciones mayores que 80 y (b) la proporción entre 60 y 80.
+
+\textbf{a) Cola derecha.} Se estandariza el límite: $z=(80-70)/10=1$. Como $\Phi(1)=0.8413$,
+\[
+P(X>80)=P(Z>1)=1-\Phi(1)=1-0.8413=0.1587.
+\]
+Así, aproximadamente el \textbf{15.87\%} obtiene más de 80.
+
+\textbf{b) Entre dos valores.} Los límites estandarizados son $z_1=(60-70)/10=-1$ y $z_2=(80-70)/10=1$. Entonces
+\[
+P(60<X<80)=\Phi(1)-\Phi(-1)=0.8413-0.1587=0.6826,
+\]
+aproximadamente el \textbf{68.3\%}.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  width=0.82\linewidth,
+  height=4.5cm,
+  domain=40:100,
+  samples=150,
+  xmin=40, xmax=100,
+  ymin=0, ymax=0.045,
+  axis lines=left,
+  xlabel={Puntuación $x$},
+  ylabel={Densidad},
+  xtick={40,50,60,70,80,90,100},
+  ytick=\empty,
+  title={$X\sim N(70,10^2)$}
+]
+\addplot[draw=none,fill=blue!25,domain=60:80,samples=80] {1/(10*sqrt(2*pi))*exp(-((x-70)^2)/(2*10^2))} \closedcycle;
+\addplot[draw=none,fill=orange!40,domain=80:100,samples=80] {1/(10*sqrt(2*pi))*exp(-((x-70)^2)/(2*10^2))} \closedcycle;
+\addplot[blue!75!black,thick] {1/(10*sqrt(2*pi))*exp(-((x-70)^2)/(2*10^2))};
+\addplot[black,dashed] coordinates {(60,0)(60,0.024)};
+\addplot[black,dashed] coordinates {(80,0)(80,0.024)};
+\node at (axis cs:70,0.012) {$P(60<X<80)$};
+\node at (axis cs:89,0.006) {$P(X>80)$};
+\end{axis}
+\end{tikzpicture}
+\caption{Las regiones sombreadas muestran el intervalo central y la cola derecha del ejercicio 1.}
+\label{fig:estandarizar}
+\end{figure}
+
+\clearpage
+\subsection*{Ejercicio 2: desestandarizar para hallar un valor}
+Los puntajes de una prueba siguen $X\sim N(500,40^2)$. ¿Qué puntaje deja aproximadamente al 90\% de los resultados por debajo?
+
+El área acumulada buscada es $\Phi(z)=0.9000$. En la tabla, el valor más cercano es $\Phi(1.28)=0.8997$, por lo que $z\approx1.28$. Ahora se vuelve a la escala original:
+\[
+x=\mu+z\sigma=500+(1.28)(40)=551.2.
+\]
+Por lo tanto, el puntaje de corte es aproximadamente \textbf{551.2}; cerca del 90\% queda por debajo.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  width=0.82\linewidth,
+  height=4.5cm,
+  domain=380:620,
+  samples=150,
+  xmin=380, xmax=620,
+  ymin=0, ymax=0.011,
+  axis lines=left,
+  xlabel={Puntaje $x$},
+  ylabel={Densidad},
+  xtick={380,420,460,500,540,580,620},
+  ytick=\empty,
+  title={Corte que deja 90\% del área a la izquierda}
+]
+\addplot[draw=none,fill=green!30,domain=380:551.2,samples=100] {1/(40*sqrt(2*pi))*exp(-((x-500)^2)/(2*40^2))} \closedcycle;
+\addplot[blue!75!black,thick] {1/(40*sqrt(2*pi))*exp(-((x-500)^2)/(2*40^2))};
+\addplot[black,dashed,thick] coordinates {(551.2,0)(551.2,0.006)};
+\node at (axis cs:551.2,0.0006) [anchor=north] {$x\approx551.2$};
+\node at (axis cs:460,0.004) {$0.90$};
+\end{axis}
+\end{tikzpicture}
+\caption{El área acumulada del 90\% determina el valor $z$ y, después, el puntaje original $x$.}
+\label{fig:desestandarizar}
+\end{figure}
+
+\clearpage
+\begingroup
+\small
+\setlength{\parskip}{0.2\baselineskip}
+\setlength{\itemsep}{0.1em}
+\setlength{\topsep}{0.2em}
+\section{Ejercicios adicionales}
+
+\subsection*{53. Distribución normal estándar}
+Para $Z\sim N(0,1)$, calcule el porcentaje indicado. Se usa que la curva es simétrica alrededor de cero.
+\begin{itemize}
+  \item \textbf{a) Dentro de 2 desviaciones estándar de la media.} El área central es $P(-2<Z<2)=\Phi(2)-\Phi(-2)=2\Phi(2)-1\approx0.9545$. Por tanto, corresponde a \textbf{95.45\%} de los datos.
+  \item \textbf{b) A más de 1 desviación estándar de la media.} Se suman las dos colas iguales: $P(|Z|>1)=2[1-\Phi(1)]\approx0.3173$, es decir, \textbf{31.73\%}.
+  \item \textbf{c) A más de 1.96 desviaciones estándar de la media.} La tabla da $\Phi(1.96)\approx0.9750$, así que cada cola tiene área $0.025$. En ambas colas: $P(|Z|>1.96)=2(0.025)=0.05=\mathbf{5.00\%}$.
+  \item \textbf{d) Entre $\mu-3\sigma$ y $\mu+3\sigma$.} En unidades estándar es $P(-3<Z<3)=\Phi(3)-\Phi(-3)\approx0.9973$, o \textbf{99.73\%}.
+  \item \textbf{e) A más de 3 desviaciones estándar de la media.} Es el complemento del área central del inciso d): $P(|Z|>3)=1-0.9973\approx0.0027$, o \textbf{0.27\%}.
+\end{itemize}
+
+\subsection*{54. Distribución uniforme}
+La distribución uniforme en $[-\sqrt{3},\sqrt{3}]$ tiene longitud total $2\sqrt{3}$. Como la densidad es constante, la probabilidad de un intervalo es su longitud dividida entre la longitud total.
+\begin{itemize}
+  \item \textbf{a)} El intervalo $(-1,1)$ tiene longitud 2, de modo que $P(-1<X<1)=\dfrac{2}{2\sqrt{3}}=\dfrac{1}{\sqrt{3}}\approx\mathbf{0.5774}$.
+  \item \textbf{b)} Si se modelara erróneamente como normal estándar, se obtendría $P(-1<Z<1)=\Phi(1)-\Phi(-1)=2\Phi(1)-1\approx\mathbf{0.6827}$.
+  \item \textbf{c)} La diferencia es $0.6827-0.5774=\mathbf{0.1053}$, o 10.53 puntos porcentuales. La forma de la distribución sí importa: la normal asigna más probabilidad a la zona central que esta uniforme.
+\end{itemize}
+
+\subsection*{55. Hallar valores $z$ a partir de probabilidades}
+Suponga $Z\sim N(0,1)$. Se convierte cada probabilidad a un área acumulada izquierda y luego se busca ese valor en la tabla $\Phi(z)$.
+\begin{itemize}
+  \item \textbf{a)} $P(Z<a)=0.9599$ ya es un área izquierda. La tabla asocia $0.9599$ con $z\approx1.75$, así que $\mathbf{a\approx1.75}$.
+  \item \textbf{b)} $P(Z>b)=0.9772$ es un área derecha; la izquierda es $1-0.9772=0.0228$. Como es una cola pequeña, el valor está bajo cero: $\Phi(-2.00)\approx0.0228$, así que $\mathbf{b\approx-2.00}$.
+  \item \textbf{c)} Para $P(Z>c)=0.0668$, el área izquierda es $1-0.0668=0.9332$. La tabla da $\Phi(1.50)\approx0.9332$, por lo que $\mathbf{c\approx1.50}$.
+  \item \textbf{d)} El área central $0.5878$ se reparte en dos colas iguales; por tanto, $\Phi(d)=(1+0.5878)/2=0.7939$. La tabla da $\mathbf{d\approx0.82}$.
+  \item \textbf{e)} De manera similar, $\Phi(e)=(1+0.0956)/2=0.5478$. Al buscar $0.5478$ en la tabla se obtiene $\mathbf{e\approx0.12}$.
+\end{itemize}
+
+\endgroup
+\clearpage
+\begingroup
+\small
+\setlength{\parskip}{0.25\baselineskip}
+\setlength{\itemsep}{0.1em}
+\setlength{\topsep}{0.2em}
+\section*{III. Ejercicios adicionales resueltos}
+
+\subsection*{21--22. Alturas de puertas}
+Se usan las distribuciones dadas para las estaturas: hombres $H\sim N(69.0,2.8^2)$ pulgadas y mujeres $M\sim N(63.6,2.5^2)$ pulgadas. Se considera que una persona pasa sin agacharse si su estatura no supera la altura de la puerta.
+
+\textbf{21. Puerta de 72 pulgadas.}
+\begin{itemize}
+  \item \textbf{a)} Para hombres, $z=(72-69)/2.8\approx1.07$; por tanto, $P(H\le72)=\Phi(1.07)\approx\mathbf{85.8\%}$.
+  \item \textbf{b)} Para mujeres, $z=(72-63.6)/2.5=3.36$; así, $P(M\le72)=\Phi(3.36)\approx\mathbf{99.96\%}$.
+  \item \textbf{c)} No sería suficiente si se quiere que casi todos los adultos pasen erguidos: alrededor del 14.2\% de los hombres tendría que agacharse.
+  \item \textbf{d)} Para cubrir al 98\% de los hombres, $z_{0.98}\approx2.054$. La altura requerida es $h=69+2.054(2.8)\approx\mathbf{74.75}$ pulgadas (cerca de 74.8).
+\end{itemize}
+
+\textbf{22. Puerta de 51.6 pulgadas.}
+\begin{itemize}
+  \item \textbf{a)} Hombres: $z=(51.6-69)/2.8\approx-6.21$, de modo que $P(H\le51.6)\approx\mathbf{0}$ (prácticamente ninguno).
+  \item \textbf{b)} Mujeres: $z=(51.6-63.6)/2.5=-4.80$; $P(M\le51.6)\approx7.9\times10^{-7}$, también prácticamente 0\%.
+  \item \textbf{c)} No permite pasar erguido a casi ningún adulto. Una puerta baja puede responder a restricciones de espacio, peso y diseño del fuselaje; se espera que los pasajeros se agachen al entrar.
+  \item \textbf{d)} El percentil 60 corresponde a $z_{0.60}\approx0.253$. Para los hombres, $h=69+0.253(2.8)\approx\mathbf{69.7}$ pulgadas.
+\end{itemize}
+
+\subsection*{35. Unidades de medición}
+Para mujeres, $\mu=63.6$ pulgadas y $\sigma=2.5$ pulgadas. En centímetros son $\mu=161.544$ cm y $\sigma=6.35$ cm.
+\begin{itemize}
+  \item \textbf{a)} Las puntuaciones $z=(x-\mu)/\sigma$ no tienen unidades: las unidades de estatura se cancelan en el cociente.
+  \item \textbf{b)} Al convertir todas las estaturas a puntuaciones $z$, la media es 0, la desviación estándar es 1 y la distribución es normal estándar, $Z\sim N(0,1)$.
+\end{itemize}
+
+\subsection*{36. Corrección por continuidad}
+Las puntuaciones CI enteras se aproximan mediante una normal con media 100 y desviación estándar 15.
+\begin{itemize}
+  \item \textbf{a) Sin corrección:} $z=(103-100)/15=0.20$, así que $P(\mathrm{CI}>103)\approx1-\Phi(0.20)=\mathbf{0.4207}$.
+  \item \textbf{b) Con corrección:} al ser enteros, $\mathrm{CI}>103$ empieza en 104; el límite continuo es 103.5. Entonces $z=(103.5-100)/15\approx0.233$ y $P\approx\mathbf{0.408}$ (con tabla a dos decimales, $1-\Phi(0.23)=0.4090$).
+  \item \textbf{c)} La corrección reduce la aproximación alrededor de 1.3 puntos porcentuales. Es preferible aquí porque toma en cuenta que los puntajes son discretos.
+\end{itemize}
+
+\clearpage
+\subsection*{37. Estandarización de calificaciones}
+Las calificaciones originales tienen distribución $G\sim N(25,5^2)$.
+\begin{itemize}
+  \item \textbf{a)} Si se suma 50 a cada nota, $Y=G+50$ tiene media $75$ y desviación estándar $5$; es decir, $Y\sim N(75,5^2)$.
+  \item \textbf{b)} Sumar 50 a todos no estandariza: solo desplaza las notas, mantiene la dispersión y el orden relativo, y puede cambiar la escala de calificación.
+  \item \textbf{c)} Para las categorías por percentil se usan $z_{0.10}\approx-1.28$, $z_{0.30}\approx-0.52$, $z_{0.70}\approx0.52$ y $z_{0.90}\approx1.28$. Con $x=25+5z$, los límites son aproximadamente 18.6, 22.4, 27.6 y 31.4:
+\end{itemize}
+\begin{center}
+\small
+\begin{tabular}{c l l}
+\toprule
+Nota & Percentil & Intervalo aproximado de calificación \\
+\midrule
+F & 10\% inferior & $G<18.6$ \\
+D & Del percentil 10 al 30 & $18.6\le G<22.4$ \\
+C & Del percentil 30 al 70 & $22.4\le G<27.6$ \\
+B & Del percentil 70 al 90 & $27.6\le G<31.4$ \\
+A & 10\% superior & $G\ge31.4$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\begin{itemize}
+  \item \textbf{d)} Si se busca calificar por posición relativa, el esquema por percentiles es más consistente: fija qué proporción recibe cada nota. Si se evalúa dominio de criterios fijos, en cambio, no necesariamente es justo forzar esos porcentajes.
+\end{itemize}
+
+\endgroup
+
+\end{document}

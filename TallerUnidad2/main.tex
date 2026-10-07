@@ -5,6 +5,9 @@
 \usepackage{amsmath,amssymb}
 \usepackage{booktabs}
 \usepackage{array}
+\usepackage{pgfplots}
+\usepgfplotslibrary{fillbetween}
+\pgfplotsset{compat=1.18}
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.65\baselineskip}
@@ -16,6 +19,22 @@
 
 \begin{document}
 \maketitle
+
+\section*{Teoría básica para resolver el taller}
+
+\textbf{Distribución $t$ de Student.} Es simétrica alrededor de cero y se usa, por ejemplo, para estudiar la media cuando no se conoce la desviación estándar poblacional y se estima con una muestra. Su forma depende de los grados de libertad ($\nu$); al aumentar estos, se aproxima a la normal estándar. El valor crítico se determina con el área de la cola: en una prueba de dos colas, el nivel total $\alpha$ se reparte como $\alpha/2$ en cada extremo.
+
+\textbf{Distribución chi-cuadrado.} Sus valores son no negativos y su forma, generalmente asimétrica hacia la derecha, depende de los grados de libertad. Como explica Triola en el contexto de la varianza muestral, si la población es normal, el estadístico
+\[
+\chi^2=\frac{(n-1)s^2}{\sigma^2}
+\]
+tiene $\nu=n-1$ grados de libertad. En los ejercicios de este taller ya se indican la distribución y sus grados de libertad, así que basta con usarlos.
+
+\textbf{Probabilidad pedida.} \emph{Más de $x$} corresponde al área bajo la curva a la derecha de $x$:
+\[
+P(X>x)=1-F_{\chi^2_\nu}(x).
+\]
+La tabla chi-cuadrado A-4 de Triola da directamente áreas de cola derecha. En cambio, para una cola izquierda de área $a$, se busca en esa tabla el área derecha $1-a$.
 
 \section{Distribución $t$ de Student}
 
@@ -47,6 +66,32 @@ Grados de libertad ($\nu$) & Área ($\alpha$) & Tipo de prueba & $\alpha$ por co
 \end{center}
 
 \textbf{Ejemplo de dos colas.} Para $\nu=20$ y $\alpha=0.05$, cada cola tiene área $0.05/2=0.025$. El cuantil positivo correspondiente es $t_{0.975,20}\approx2.086$; por simetría, los críticos son $-2.086$ y $2.086$.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  width=0.82\linewidth,
+  height=5.2cm,
+  domain=-4:4,
+  samples=160,
+  xmin=-4, xmax=4,
+  ymin=0, ymax=0.42,
+  axis lines=left,
+  xlabel={$t$},
+  ylabel={Densidad},
+  legend style={at={(0.98,0.98)},anchor=north east,draw=none,fill=none},
+  title={Distribución $t_5$ y normal estándar}
+]
+\addplot[blue!75!black,thick] {1/sqrt(2*pi)*exp(-x^2/2)};
+\addlegendentry{$Z\sim N(0,1)$}
+\addplot[red!75!black,thick] {8/(3*pi*sqrt(5))*(1+x^2/5)^(-3)};
+\addlegendentry{$T\sim t_5$}
+\end{axis}
+\end{tikzpicture}
+\caption{La distribución $t$ tiene colas más pesadas; al crecer los grados de libertad se aproxima a la normal.}
+\label{fig:t-normal}
+\end{figure}
 
 \subsection{Preguntas de selección múltiple}
 \begin{enumerate}
@@ -93,6 +138,34 @@ P(X>x)=\frac{\Gamma(\nu/2,\,x/2)}{\Gamma(\nu/2)},
 \]
 donde $\nu$ son los grados de libertad y $\Gamma(\cdot,\cdot)$ es la gamma incompleta superior. Se sustituyen los grados de libertad y el umbral de cada problema:
 
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  width=0.82\linewidth,
+  height=5.2cm,
+  domain=0:16,
+  samples=160,
+  xmin=0, xmax=16,
+  ymin=0, ymax=0.28,
+  axis lines=left,
+  xlabel={$x$},
+  ylabel={Densidad},
+  title={Chi-cuadrado con 3 grados de libertad},
+  legend style={at={(0.98,0.98)},anchor=north east,draw=none,fill=none}
+]
+\addplot[draw=none,fill=orange!35,domain=6:16,samples=100] {sqrt(x)*exp(-x/2)/sqrt(2*pi)} \closedcycle;
+\addlegendentry{Área $P(X>6)$}
+\addplot[blue!75!black,thick] {sqrt(x)*exp(-x/2)/sqrt(2*pi)};
+\addlegendentry{Densidad $\chi^2_3$}
+\addplot[black,dashed,thick] coordinates {(6,0)(6,0.28)};
+\node[anchor=south west] at (axis cs:6,0) {$x=6$};
+\end{axis}
+\end{tikzpicture}
+\caption{El área sombreada representa la probabilidad de exceder 6 en el ejercicio 1.}
+\label{fig:chi-cola}
+\end{figure}
+
 \begin{center}
 \small
 \begin{tabular}{r r r l}
@@ -113,17 +186,70 @@ Ejercicio & Grados de libertad ($\nu$) & Umbral ($x$) & Probabilidad pedida $P(X
 \end{tabular}
 \end{center}
 
-\textbf{Desarrollo del ejercicio 1.} Con $X\sim\chi^2_3$, se busca el área a la derecha de $6$:
-\[
-P(X>6)=1-F_{\chi^2_3}(6)\approx0.11161.
-\]
-Por tanto, la probabilidad es aproximadamente $11.161\%$.
+\subsection{Enunciados del taller y soluciones}
+En los ejercicios siguientes, el enunciado proporciona directamente una variable chi-cuadrado, sus grados de libertad y un umbral. En todos se calcula la cola derecha $P(X>x)=1-F_{\chi^2_\nu}(x)$; se conserva la precisión del umbral dado y se redondea el resultado a cinco decimales.
 
-\textbf{Desarrollo del ejercicio 2.} Para $X\sim\chi^2_5$:
-\[
-P(X>11.070)=1-F_{\chi^2_5}(11.070)\approx0.05001\approx5\%.
-\]
-El umbral $11.070$ es, salvo redondeo, el percentil 95 de la distribución con 5 grados de libertad. Los umbrales de los ejercicios 3--10 también son aproximadamente percentiles 95; por eso sus probabilidades de excedencia son cercanas al 5\%. El umbral del ejercicio 1 no es ese percentil, y su probabilidad resulta mayor.
+\begin{enumerate}
+  \item \textbf{Enunciado.} El tiempo de espera en una oficina sigue una distribución $\chi^2$ con 3 grados de libertad. ¿Cuál es la probabilidad de esperar más de 6 minutos?
+  \[
+  X\sim\chi^2_3,\qquad P(X>6)=1-F_{\chi^2_3}(6)\approx0.11161.
+  \]
+  La probabilidad es aproximadamente $11.161\%$. La figura~\ref{fig:chi-cola} muestra el área buscada.
+
+  \item \textbf{Enunciado.} El número de errores por lote sigue una distribución $\chi^2$ con 5 grados de libertad. ¿Cuál es la probabilidad de más de 11.070 errores?
+  \[
+  X\sim\chi^2_5,\qquad P(X>11.070)=1-F_{\chi^2_5}(11.070)\approx0.05001\approx5\%.
+  \]
+  El umbral es aproximadamente el percentil 95, por lo que queda cerca del 5\% a su derecha.
+
+  \item \textbf{Enunciado.} El consumo mensual de un hogar sigue una distribución $\chi^2$ con 8 grados de libertad. ¿Cuál es la probabilidad de superar 15.507 kWh?
+  \[
+  X\sim\chi^2_8,\qquad P(X>15.507)=1-F_{\chi^2_8}(15.507)\approx0.05001\approx5\%.
+  \]
+  El valor 15.507 es aproximadamente el percentil 95 para 8 grados de libertad.
+
+  \item \textbf{Enunciado.} La duración de un electrodoméstico sigue una distribución $\chi^2$ con 2 grados de libertad. ¿Cuál es la probabilidad de que dure más de 5.991 meses?
+  \[
+  X\sim\chi^2_2,\qquad P(X>5.991)=1-F_{\chi^2_2}(5.991)\approx0.05001\approx5\%.
+  \]
+  El umbral corresponde, salvo redondeo, al percentil 95 de esa distribución.
+
+  \item \textbf{Enunciado.} Los accidentes laborales mensuales siguen una distribución $\chi^2$ con 12 grados de libertad. ¿Cuál es la probabilidad de más de 21.026 accidentes?
+  \[
+  X\sim\chi^2_{12},\qquad P(X>21.026)=1-F_{\chi^2_{12}}(21.026)\approx0.05000\approx5\%.
+  \]
+  El umbral es el percentil 95 aproximado para 12 grados de libertad.
+
+  \item \textbf{Enunciado.} El tiempo de respuesta de un servidor sigue una distribución $\chi^2$ con 7 grados de libertad. ¿Cuál es la probabilidad de tardar más de 14.067 ms?
+  \[
+  X\sim\chi^2_7,\qquad P(X>14.067)=1-F_{\chi^2_7}(14.067)\approx0.05000\approx5\%.
+  \]
+  El valor 14.067 es aproximadamente el percentil 95 para 7 grados de libertad.
+
+  \item \textbf{Enunciado.} Las quejas diarias siguen una distribución $\chi^2$ con 15 grados de libertad. ¿Cuál es la probabilidad de más de 24.996 quejas en un día?
+  \[
+  X\sim\chi^2_{15},\qquad P(X>24.996)=1-F_{\chi^2_{15}}(24.996)\approx0.05000\approx5\%.
+  \]
+  El umbral está aproximadamente en el percentil 95.
+
+  \item \textbf{Enunciado.} El gasto mensual de una familia sigue una distribución $\chi^2$ con 20 grados de libertad. ¿Cuál es la probabilidad de gastar más de 31.410 miles de pesos?
+  \[
+  X\sim\chi^2_{20},\qquad P(X>31.410)=1-F_{\chi^2_{20}}(31.410)\approx0.05001\approx5\%.
+  \]
+  El umbral es el percentil 95 aproximado para 20 grados de libertad.
+
+  \item \textbf{Enunciado.} El tiempo para completar un trámite sigue una distribución $\chi^2$ con 3 grados de libertad. ¿Cuál es la probabilidad de tardar más de 7.815 días?
+  \[
+  X\sim\chi^2_3,\qquad P(X>7.815)=1-F_{\chi^2_3}(7.815)\approx0.04999\approx5\%.
+  \]
+  Aunque son los mismos grados de libertad que en el ejercicio 1, el umbral es mayor y está aproximadamente en el percentil 95; por eso su cola es mucho menor.
+
+  \item \textbf{Enunciado.} Los productos defectuosos por lote siguen una distribución $\chi^2$ con 25 grados de libertad. ¿Cuál es la probabilidad de más de 37.652 productos defectuosos?
+  \[
+  X\sim\chi^2_{25},\qquad P(X>37.652)=1-F_{\chi^2_{25}}(37.652)\approx0.05001\approx5\%.
+  \]
+  El valor 37.652 es aproximadamente el percentil 95 para 25 grados de libertad.
+\end{enumerate}
 
 \textit{Nota de interpretación:} los resultados anteriores suponen que las variables siguen exactamente las distribuciones chi-cuadrado indicadas. En aplicaciones reales, una chi-cuadrado es una variable no negativa y adimensional; si se modelan tiempos, consumo o conteos, el planteamiento debe justificar cómo se relacionan esas cantidades con una variable chi-cuadrado.
 
