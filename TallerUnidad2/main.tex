@@ -1,0 +1,130 @@
+\documentclass[11pt]{article}
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.65\baselineskip}
+\renewcommand{\arraystretch}{1.2}
+
+\title{Taller resuelto: distribuciones $t$ de Student y chi-cuadrado}
+\author{Soluciones explicadas}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Distribución $t$ de Student}
+
+\subsection{Cómo elegir el valor crítico}
+Sea $T$ una variable con distribución $t$ y $\nu$ grados de libertad. El valor crítico depende de en qué cola queda el área de rechazo:
+\begin{itemize}
+  \item \textbf{Cola derecha:} si el área derecha es $\alpha$, se busca $t_c$ tal que $P(T>t_c)=\alpha$. Por tanto, $t_c=t_{1-\alpha,\nu}$ y es positivo.
+  \item \textbf{Cola izquierda:} si el área izquierda es $\alpha$, se busca $t_c$ tal que $P(T<t_c)=\alpha$. Por simetría, el crítico es negativo: $t_c=t_{\alpha,\nu}$.
+  \item \textbf{Dos colas:} el área total $\alpha$ se reparte por igual, $\alpha/2$ en cada cola. Los críticos son $-t_{1-\alpha/2,\nu}$ y $t_{1-\alpha/2,\nu}$.
+\end{itemize}
+En la tabla siguiente, el área indicada se interpreta como el nivel de significancia $\alpha$. Los críticos se redondean a tres decimales.
+
+\begin{center}
+\small
+\begin{tabular}{r l l c l}
+\toprule
+Grados de libertad ($\nu$) & Área ($\alpha$) & Tipo de prueba & $\alpha$ por cola & Valor(es) crítico(s) \\
+\midrule
+8  & 0.05  & Cola derecha & 0.05 & $1.860$ \\
+12 & 0.01  & Cola izquierda & 0.01 & $-2.681$ \\
+20 & 0.05  & Dos colas & 0.025 & $-2.086,\ 2.086$ \\
+25 & 0.10  & Dos colas & 0.05 & $-1.708,\ 1.708$ \\
+6  & 0.025 & Cola derecha & 0.025 & $2.447$ \\
+40 & 0.01  & Dos colas & 0.005 & $-2.704,\ 2.704$ \\
+16 & 0.05  & Cola izquierda & 0.05 & $-1.746$ \\
+10 & 0.10  & Cola derecha & 0.10 & $1.372$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Ejemplo de dos colas.} Para $\nu=20$ y $\alpha=0.05$, cada cola tiene área $0.05/2=0.025$. El cuantil positivo correspondiente es $t_{0.975,20}\approx2.086$; por simetría, los críticos son $-2.086$ y $2.086$.
+
+\subsection{Preguntas de selección múltiple}
+\begin{enumerate}
+  \item Si $\alpha=0.01$ y la prueba es de cola izquierda, el valor crítico es \textbf{b) negativo}. El 1\% del área queda en el extremo izquierdo de la distribución, por debajo de cero.
+  \item Al aumentar los grados de libertad, el valor crítico $t$ \textbf{b) se acerca al valor $z$ de la normal estándar}. La distribución $t$ tiene cada vez menos incertidumbre adicional y converge a la normal estándar.
+\end{enumerate}
+
+\subsection{Pruebas con áreas distintas en las dos colas}
+En esta tabla, las columnas «Izquierda» y «Derecha» se interpretan como las áreas de rechazo $\alpha_L$ y $\alpha_R$ en cada cola. Así, el crítico izquierdo satisface $P(T<t_L)=\alpha_L$ y el derecho satisface $P(T>t_R)=\alpha_R$. Como las áreas pueden ser distintas, los críticos no tienen por qué ser opuestos; el nivel total es $\alpha_L+\alpha_R$.
+
+\begin{center}
+\small
+\begin{tabular}{r c c r r}
+\toprule
+\shortstack{Grados de\\libertad ($\nu$)} & \shortstack{Área\\izquierda ($\alpha_L$)} & \shortstack{Área\\derecha ($\alpha_R$)} & \shortstack{Crítico\\izquierdo ($t_L$)} & \shortstack{Crítico\\derecho ($t_R$)} \\
+\midrule
+6  & 0.10  & 0.025 & $-1.440$ & $2.447$ \\
+8  & 0.10  & 0.05  & $-1.397$ & $1.860$ \\
+12 & 0.025 & 0.01  & $-2.179$ & $2.681$ \\
+20 & 0.01  & 0.05  & $-2.528$ & $1.725$ \\
+25 & 0.05  & 0.10  & $-1.708$ & $1.316$ \\
+40 & 0.025 & 0.01  & $-2.021$ & $2.423$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Ejemplo.} Para $\nu=6$, el área izquierda de $0.10$ da $t_L\approx-1.440$. El área derecha de $0.025$ equivale al percentil $1-0.025=0.975$, de donde $t_R\approx2.447$. No se divide ninguna de estas áreas entre dos: ya están especificadas por separado.
+
+\subsection{Preguntas de reflexión}
+\begin{enumerate}
+  \item \textbf{¿Por qué la distribución $t$ tiene colas más gruesas que la normal?} Porque se usa cuando la desviación estándar poblacional es desconocida y se estima con una muestra. Esa estimación añade variabilidad, en especial en muestras pequeñas, y aumenta la probabilidad de valores alejados del centro.
+  \item \textbf{¿Qué ocurre con el valor crítico al aumentar los grados de libertad?} Para un mismo nivel de significancia, su magnitud disminuye y se aproxima al cuantil correspondiente de la normal estándar. En el límite, las distribuciones coinciden.
+  \item \textbf{¿Por qué se usa $\alpha/2$ en una prueba de dos colas?} Porque el nivel de significancia total $\alpha$ se divide por igual entre los dos extremos cuando la prueba es bilateral y simétrica. Cada cola contiene $\alpha/2$.
+  \item \textbf{¿Qué diferencia hay entre $t$ y $z$?} El estadístico $z$ usa la normal estándar, típicamente cuando la desviación estándar poblacional es conocida (o bajo condiciones que justifican la aproximación normal). El estadístico $t$ incorpora la estimación de esa desviación mediante la muestra y depende de los grados de libertad.
+\end{enumerate}
+
+\textbf{Errores que conviene evitar:} usar $\alpha$ completo en cada cola de una prueba bilateral; olvidar que el crítico izquierdo es negativo; y confundir el área de cola con el área acumulada que se consulta en una tabla. Por ejemplo, un área derecha $\alpha$ corresponde al acumulado $1-\alpha$.
+
+\section{Distribución chi-cuadrado}
+
+Se pide en cada ejercicio la probabilidad de superar un umbral. Si $X\sim\chi^2_{\nu}$, se calcula la cola derecha $P(X>x)=1-F_{\chi^2_\nu}(x)$. También puede escribirse como
+\[
+P(X>x)=\frac{\Gamma(\nu/2,\,x/2)}{\Gamma(\nu/2)},
+\]
+donde $\nu$ son los grados de libertad y $\Gamma(\cdot,\cdot)$ es la gamma incompleta superior. Se sustituyen los grados de libertad y el umbral de cada problema:
+
+\begin{center}
+\small
+\begin{tabular}{r r r l}
+\toprule
+Ejercicio & Grados de libertad ($\nu$) & Umbral ($x$) & Probabilidad pedida $P(X>x)$ \\
+\midrule
+1  & 3  & 6.000   & $0.11161\approx 11.161\%$ \\
+2  & 5  & 11.070  & $0.05001\approx 5.001\%$ \\
+3  & 8  & 15.507  & $0.05001\approx 5.001\%$ \\
+4  & 2  & 5.991   & $0.05001\approx 5.001\%$ \\
+5  & 12 & 21.026  & $0.05000\approx 5.000\%$ \\
+6  & 7  & 14.067  & $0.05000\approx 5.000\%$ \\
+7  & 15 & 24.996  & $0.05000\approx 5.000\%$ \\
+8  & 20 & 31.410  & $0.05001\approx 5.001\%$ \\
+9  & 3  & 7.815   & $0.04999\approx 4.999\%$ \\
+10 & 25 & 37.652  & $0.05001\approx 5.001\%$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Desarrollo del ejercicio 1.} Con $X\sim\chi^2_3$, se busca el área a la derecha de $6$:
+\[
+P(X>6)=1-F_{\chi^2_3}(6)\approx0.11161.
+\]
+Por tanto, la probabilidad es aproximadamente $11.161\%$.
+
+\textbf{Desarrollo del ejercicio 2.} Para $X\sim\chi^2_5$:
+\[
+P(X>11.070)=1-F_{\chi^2_5}(11.070)\approx0.05001\approx5\%.
+\]
+El umbral $11.070$ es, salvo redondeo, el percentil 95 de la distribución con 5 grados de libertad. Los umbrales de los ejercicios 3--10 también son aproximadamente percentiles 95; por eso sus probabilidades de excedencia son cercanas al 5\%. El umbral del ejercicio 1 no es ese percentil, y su probabilidad resulta mayor.
+
+\textit{Nota de interpretación:} los resultados anteriores suponen que las variables siguen exactamente las distribuciones chi-cuadrado indicadas. En aplicaciones reales, una chi-cuadrado es una variable no negativa y adimensional; si se modelan tiempos, consumo o conteos, el planteamiento debe justificar cómo se relacionan esas cantidades con una variable chi-cuadrado.
+
+\end{document}
