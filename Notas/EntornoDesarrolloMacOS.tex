@@ -1,0 +1,69 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{listings}
+
+\title{Preparación del entorno de desarrollo en macOS}
+\author{Daniel Soto Villada}
+\date{\today}
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  keepspaces=true,
+  columns=fullflexible
+}
+
+\begin{document}
+
+\maketitle
+
+Esta guía reúne los pasos iniciales para preparar un entorno de desarrollo
+en macOS: instalar las herramientas de línea de comandos de Xcode, comprobar
+la disponibilidad de Git e instalar Homebrew.
+
+\section{Instalar las herramientas de línea de comandos de Xcode}
+
+Abre Terminal y ejecuta:
+
+\begin{lstlisting}
+xcode-select --install
+\end{lstlisting}
+
+Sigue las instrucciones que aparecen en pantalla para completar la instalación.
+
+\section{Comprobar Git}
+
+Comprueba si Git está disponible con el siguiente comando:
+
+\begin{lstlisting}
+git --version
+\end{lstlisting}
+
+Si Git no está instalado, instala las herramientas de línea de comandos de
+Xcode siguiendo el paso anterior y vuelve a ejecutar el comando.
+
+\section{Instalar Homebrew}
+
+Cuando las herramientas de línea de comandos estén instaladas, ejecuta en
+Terminal el instalador de Homebrew:
+
+\begin{lstlisting}
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+\end{lstlisting}
+
+Sigue las indicaciones del instalador para finalizar la configuración.
+
+\section{¿Qué es Homebrew y para qué sirve?}
+
+Homebrew es un gestor de paquetes para macOS que permite instalar y actualizar
+programas desde Terminal con comandos sencillos. No es imprescindible para
+programar, pero facilita la preparación del entorno y la instalación de
+herramientas y componentes para programación y análisis de datos, como Python,
+R y Jupyter.
+
+\end{document}
