@@ -1,89 +1,99 @@
-
 \documentclass[11pt]{article}
 \usepackage[margin=1in]{geometry}
-
-% Core packages
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{amsmath,amssymb}
-\usepackage{tikz-cd}
-\usepackage{multicol}
 \usepackage{tabularx}
+\usepackage{booktabs}
 
-% Paragraphs
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{1\baselineskip}
+\setlength{\parskip}{0.7\baselineskip}
 
+\title{Exploración descriptiva del conjunto de datos \texttt{survey}}
+\author{Nicol Dayana Vasquez Zapata \\ Pregrado en Estadística, Universidad de Antioquia \and Daniel Soto Villada \\ Pregrado en Astronomía, Universidad de Antioquia}
+\date{\today}
 
 \begin{document}
-\begin{titlepage}
-\centering
-\vspace*{1cm}
-{\Large\textbf{Universidad de Antioquia}\par}
-{\large Facultad de Ciencias Exactas y Naturales\par Instituto de Matemáticas\par}
-\vspace{2cm}
-{\LARGE\bfseries Aplicación de la estadística descriptiva al conjunto de datos \texttt{survey}\par}
-\vspace{1.5cm}
-{\large Nicol Dayana Vasquez Zapata\par}
-{\normalsize Estudiante del Pregrado de Estadística\par}
-\vspace{0.7cm}
-{\large Daniel Soto Villada\par}
-{\normalsize Estudiante del Pregrado de Astronomía\par}
-\vfill
-{\normalsize Curso: Fundamentos de Estadística I\par Docente: Luz Estela del Socorro Sánchez Herrera\par}
-\vspace{0.75cm}
-Semestre 2026-2\par
-Fecha: \today\par
-\end{titlepage}
+\maketitle
+
+\begin{abstract}
+En este informe se resume una exploración descriptiva del conjunto \texttt{survey} del paquete \texttt{MASS} en R. Se trabajó con seis variables: sexo, mano dominante, amplitud de la mano dominante y no dominante, pulso y estatura. Se revisaron valores faltantes, se construyeron tablas de frecuencia y se calcularon medidas descriptivas básicas para entender el perfil general de los estudiantes.
+\end{abstract}
 
 \section{Introducción}
+Este trabajo busca describir, de forma clara y breve, cómo son los datos de una encuesta aplicada a estudiantes. El enfoque es descriptivo: primero se revisa la calidad de la base y luego se presentan tablas y resúmenes numéricos.
+
+Aquí falta agregar una motivación personal del grupo sobre por qué este conjunto de datos es útil para el curso.
 
 \section{Materiales y métodos}
-\subsection{Descripción de la base de datos}
-
-El conjunto de datos \texttt{survey}, incluido en el paquete \texttt{MASS} de R, contiene las respuestas de una encuesta realizada a \textbf{237 estudiantes de primer año de estadística} de la Universidad de Adelaida (Australia). Se utiliza con frecuencia en la enseñanza de la estadística para ilustrar el análisis exploratorio de datos, las pruebas de hipótesis —como la prueba de independencia $\chi^2$ y la prueba $t$ de Student— y los modelos de regresión.
-
-\subsection{}
+\subsection{Base de datos y variables}
+Se utilizó el conjunto \texttt{survey} del paquete \texttt{MASS}. En total hay 237 registros. Para este informe se seleccionaron las variables \texttt{Sex}, \texttt{W.Hnd}, \texttt{Wr.Hnd}, \texttt{NW.Hnd}, \texttt{Pulse} y \texttt{Height}.
 
 \begin{center}
-\renewcommand{\arraystretch}{1.2}
-\begin{tabularx}{\textwidth}{|l|X|X|}
-\hline
-\textbf{Variable} & \textbf{Descripción} & \textbf{Tipo de variable estadística} \\
-\hline
-\texttt{Sex} & Sexo reportado por el estudiante (\texttt{Female}, \texttt{Male}). & \textbf{Cualitativa nominal} \\
-\hline
-\texttt{Wr.Hnd} & Amplitud o envergadura de la mano con la que escribe (\textit{writing hand span}), en centímetros; distancia del pulgar al meñique extendido. & \textbf{Cuantitativa continua} \\
-\hline
-\texttt{NW.Hnd} & Amplitud o envergadura de la mano con la que no escribe (\textit{non-writing hand span}), en centímetros. & \textbf{Cuantitativa continua} \\
-\hline
-\texttt{W.Hnd} & Mano dominante para escribir (\texttt{Left} para zurdo, \texttt{Right} para diestro). & \textbf{Cualitativa nominal} \\
-\hline
-\texttt{Pulse} & Frecuencia cardíaca en reposo, en latidos por minuto (bpm). & \textbf{Cuantitativa discreta} (usualmente tratada como continua en modelos de regresión). \\
-\hline
-\texttt{Height} & Estatura del estudiante, expresada en centímetros. & \textbf{Cuantitativa continua} \\
-\hline
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\textwidth}{@{}lXl@{}}
+\toprule
+\textbf{Variable} & \textbf{Descripción} & \textbf{Tipo} \\
+\midrule
+\texttt{Sex} & Sexo reportado (Female/Male). & Cualitativa nominal \\
+\texttt{W.Hnd} & Mano dominante para escribir (Left/Right). & Cualitativa nominal \\
+\texttt{Wr.Hnd} & Amplitud de la mano con la que escribe (cm). & Cuantitativa continua \\
+\texttt{NW.Hnd} & Amplitud de la mano no dominante (cm). & Cuantitativa continua \\
+\texttt{Pulse} & Pulso en reposo (latidos por minuto). & Cuantitativa (discreta) \\
+\texttt{Height} & Estatura (cm). & Cuantitativa continua \\
+\bottomrule
 \end{tabularx}
 \end{center}
 
-\subsection{Métodos estadísticos}
-definición y fórmulas de las medidas de
-resumen usadas (de tendencia central, dispersión, asimetría y apuntalamiento) y de sus valores de interpretación (por ejemplo, si $K> 0$ entonces..., si $K < 0$, entonces..., y si $K = 0$ entonces...).
+\subsection{Tratamiento de valores faltantes}
+Se identificaron valores faltantes en todas las variables seleccionadas. Los faltantes fueron: 1 en \texttt{Sex}, 1 en \texttt{W.Hnd}, 1 en \texttt{Wr.Hnd}, 1 en \texttt{NW.Hnd}, 45 en \texttt{Pulse} y 28 en \texttt{Height}. Para algunos análisis se trabajó con casos completos, quedando 168 observaciones sin NA.
 
-\subsection{Descripción de valores perdidos}
-Descripción de los valores perdidos: (Si los hay) se debe contar cuáles valores perdidos se encontraron y cómo se ven en la base de datos. Ejemplo: NC=No contestó, SD=Sin dato, NS=No sabe, etc.
+Aquí falta decidir y justificar si el análisis final se reportará siempre con casos completos o variable por variable.
 
-\subsection{Descripción de los análisis}
-Que es lo que se quiere observar en la base de datos
+\subsection{Procedimiento en R}
+Se usaron tablas de frecuencia para variables cualitativas y medidas de resumen para variables cuantitativas (media, mediana, cuartiles, desviación estándar y rango intercuartílico).
 
-\section{Resultados}
-Tablas, graficos y analisis correspondientes
-\subsection{Análisis Univariado}
-Para las variables cuantitativas calcular las medidas de resumen. Para variables cualitativas, hacer tablas de frecuencia (con n y \%) y diagrama de barras.
-\subsection{Otros análisis cuantitativos}
-Escoja dos o tres variable cuantitativa y muestre
-claramente sus cuartiles y deciles, diagrama de tallo y hojas, diagrama de cajas y bigote, y su histograma y tabla de frecuencias. Analice.
-\section{Anàlisis}
-Analicelosresultadosdelasecciónanterior,estasdosseccionespueden ir juntas como “Resultados y Análisis”
+Código clave usado en la preparación:
+\begin{verbatim}
+library(MASS)
+data(survey)
+survey_filtrado <- survey[, c("Sex", "Wr.Hnd", "NW.Hnd", "W.Hnd", "Pulse", "Height")]
+colSums(is.na(survey_filtrado))
+\end{verbatim}
+
+\section{Resultados y análisis}
+\subsection{Variables cualitativas}
+En \texttt{Sex} hubo 236 casos válidos: 118 mujeres (50\%) y 118 hombres (50\%).
+En \texttt{W.Hnd} hubo 236 casos válidos: 218 diestros (92.37\%) y 18 zurdos (7.63\%).
+
+Estos resultados muestran una distribución equilibrada por sexo y una mayoría amplia de estudiantes diestros.
+
+\subsection{Variables cuantitativas}
+Resumen principal (sobre casos válidos por variable):
+\begin{itemize}
+  \item \texttt{Wr.Hnd}: media 18.67, mediana 18.5, Q1=17.5, Q3=19.8.
+  \item \texttt{NW.Hnd}: media 18.58, mediana 18.5, Q1=17.5, Q3=19.72.
+  \item \texttt{Pulse}: media 74.15, mediana 72.5, Q1=66, Q3=80.
+  \item \texttt{Height}: media 172.38, mediana 171, Q1=165, Q3=180.
+\end{itemize}
+
+Los valores centrales de \texttt{Wr.Hnd} y \texttt{NW.Hnd} son muy parecidos. En \texttt{Height}, la mitad central de los datos está entre 165 y 180 cm. En \texttt{Pulse}, la mayor concentración aparece alrededor de 68 a 80 latidos por minuto.
+
+Código clave para resúmenes:
+\begin{verbatim}
+summary(survey_filtrado[, c("Wr.Hnd", "NW.Hnd", "Pulse", "Height")])
+quantile(survey_filtrado$Height, probs = c(0.25, 0.5, 0.75), na.rm = TRUE)
+\end{verbatim}
+
+\subsection{Atípicos y distribución}
+Con la regla $1.5\times RIC$ se observaron atípicos en \texttt{Wr.Hnd}, \texttt{NW.Hnd} y \texttt{Pulse}; por ejemplo, un pulso de 35 y registros de 104 latidos por minuto.
+
+Aquí falta incluir una figura final (boxplot o histograma) y comentar brevemente qué cambia con y sin atípicos.
+
 \section{Conclusiones}
-Escriba las conclusiones de sus análisis.
+La exploración descriptiva permitió identificar el perfil básico de la muestra y la calidad de los datos. En términos generales, las amplitudes de mano están concentradas cerca de 18.5 cm, la estatura alrededor de 171--172 cm y el pulso en torno a 72--74 latidos por minuto.
+
+Aquí falta redactar una conclusión final conectada con los objetivos del curso y proponer una pregunta para análisis inferencial.
 
 \end{document}
