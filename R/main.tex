@@ -1,0 +1,89 @@
+
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% Core packages
+\usepackage{amsmath,amssymb}
+\usepackage{tikz-cd}
+\usepackage{multicol}
+\usepackage{tabularx}
+
+% Paragraphs
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1\baselineskip}
+
+
+\begin{document}
+\begin{titlepage}
+\centering
+\vspace*{1cm}
+{\Large\textbf{Universidad de Antioquia}\par}
+{\large Facultad de Ciencias Exactas y Naturales\par Instituto de Matemáticas\par}
+\vspace{2cm}
+{\LARGE\bfseries Aplicación de la estadística descriptiva al conjunto de datos \texttt{survey}\par}
+\vspace{1.5cm}
+{\large Nicol Dayana Vasquez Zapata\par}
+{\normalsize Estudiante del Pregrado de Estadística\par}
+\vspace{0.7cm}
+{\large Daniel Soto Villada\par}
+{\normalsize Estudiante del Pregrado de Astronomía\par}
+\vfill
+{\normalsize Curso: Fundamentos de Estadística I\par Docente: Luz Estela del Socorro Sánchez Herrera\par}
+\vspace{0.75cm}
+Semestre 2026-2\par
+Fecha: \today\par
+\end{titlepage}
+
+\section{Introducción}
+
+\section{Materiales y métodos}
+\subsection{Descripción de la base de datos}
+
+El conjunto de datos \texttt{survey}, incluido en el paquete \texttt{MASS} de R, contiene las respuestas de una encuesta realizada a \textbf{237 estudiantes de primer año de estadística} de la Universidad de Adelaida (Australia). Se utiliza con frecuencia en la enseñanza de la estadística para ilustrar el análisis exploratorio de datos, las pruebas de hipótesis —como la prueba de independencia $\chi^2$ y la prueba $t$ de Student— y los modelos de regresión.
+
+\subsection{}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{|l|X|X|}
+\hline
+\textbf{Variable} & \textbf{Descripción} & \textbf{Tipo de variable estadística} \\
+\hline
+\texttt{Sex} & Sexo reportado por el estudiante (\texttt{Female}, \texttt{Male}). & \textbf{Cualitativa nominal} \\
+\hline
+\texttt{Wr.Hnd} & Amplitud o envergadura de la mano con la que escribe (\textit{writing hand span}), en centímetros; distancia del pulgar al meñique extendido. & \textbf{Cuantitativa continua} \\
+\hline
+\texttt{NW.Hnd} & Amplitud o envergadura de la mano con la que no escribe (\textit{non-writing hand span}), en centímetros. & \textbf{Cuantitativa continua} \\
+\hline
+\texttt{W.Hnd} & Mano dominante para escribir (\texttt{Left} para zurdo, \texttt{Right} para diestro). & \textbf{Cualitativa nominal} \\
+\hline
+\texttt{Pulse} & Frecuencia cardíaca en reposo, en latidos por minuto (bpm). & \textbf{Cuantitativa discreta} (usualmente tratada como continua en modelos de regresión). \\
+\hline
+\texttt{Height} & Estatura del estudiante, expresada en centímetros. & \textbf{Cuantitativa continua} \\
+\hline
+\end{tabularx}
+\end{center}
+
+\subsection{Métodos estadísticos}
+definición y fórmulas de las medidas de
+resumen usadas (de tendencia central, dispersión, asimetría y apuntalamiento) y de sus valores de interpretación (por ejemplo, si $K> 0$ entonces..., si $K < 0$, entonces..., y si $K = 0$ entonces...).
+
+\subsection{Descripción de valores perdidos}
+Descripción de los valores perdidos: (Si los hay) se debe contar cuáles valores perdidos se encontraron y cómo se ven en la base de datos. Ejemplo: NC=No contestó, SD=Sin dato, NS=No sabe, etc.
+
+\subsection{Descripción de los análisis}
+Que es lo que se quiere observar en la base de datos
+
+\section{Resultados}
+Tablas, graficos y analisis correspondientes
+\subsection{Análisis Univariado}
+Para las variables cuantitativas calcular las medidas de resumen. Para variables cualitativas, hacer tablas de frecuencia (con n y \%) y diagrama de barras.
+\subsection{Otros análisis cuantitativos}
+Escoja dos o tres variable cuantitativa y muestre
+claramente sus cuartiles y deciles, diagrama de tallo y hojas, diagrama de cajas y bigote, y su histograma y tabla de frecuencias. Analice.
+\section{Anàlisis}
+Analicelosresultadosdelasecciónanterior,estasdosseccionespueden ir juntas como “Resultados y Análisis”
+\section{Conclusiones}
+Escriba las conclusiones de sus análisis.
+
+\end{document}
