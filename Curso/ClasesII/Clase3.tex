@@ -1,0 +1,168 @@
+\chapter{Clase 3: Regla de multiplicación y distribuciones condicionales}
+
+\section{Regla de multiplicación de probabilidades}
+
+La regla de multiplicación permite calcular la probabilidad de que dos sucesos ocurran simultáneamente a partir de una probabilidad condicional. Para sucesos $A$ y $B$, con $P(B)>0$, la probabilidad de $A$ condicionada a $B$ se define como
+
+\begin{equation*}
+P(A\mid B)=\frac{P(A\cap B)}{P(B)}.
+\end{equation*}
+
+Despejando $P(A\cap B)$ se obtiene la regla de multiplicación:
+
+\begin{equation*}
+P(A\cap B)=P(A\mid B)P(B).
+\end{equation*}
+
+También puede condicionarse en el otro sentido:
+
+\begin{equation*}
+P(A\cap B)=P(B\mid A)P(A),\qquad P(A)>0.
+\end{equation*}
+
+En términos intuitivos, la probabilidad de que ocurran ambos sucesos es la probabilidad de que ocurra primero el suceso condicionado multiplicada por la probabilidad de que ocurra el otro dentro de ese grupo. Para tres sucesos, la regla se aplica sucesivamente:
+
+\begin{equation*}
+P(A\cap B\cap C)=P(A)P(B\mid A)P(C\mid A\cap B),
+\end{equation*}
+
+si las probabilidades condicionales están definidas.
+
+\subsection{Ejemplo: sordera y daltonismo}
+
+En una población se estudia la relación entre sordera y daltonismo. Sean $S$ el suceso ``la persona es sorda'' y $D$ el suceso ``la persona es daltónica''. La tabla presenta las probabilidades conjuntas y sus probabilidades marginales:
+
+\begin{table}[H]
+\centering
+\small
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|l|r|r|r|}
+\hline
+ & \textbf{Sorda ($S$)} & \textbf{No sorda ($S^c$)} & \textbf{Total} \\ \hline
+\textbf{Daltónica ($D$)} & 0.0004 & 0.0796 & 0.0800 \\ \hline
+\textbf{No daltónica ($D^c$)} & 0.0046 & 0.9154 & 0.9200 \\ \hline
+\textbf{Total} & 0.0050 & 0.9950 & 1.0000 \\ \hline
+\end{tabular}
+\caption{Distribución conjunta de sordera y daltonismo.}
+\label{tab:sordera-daltonismo}
+\end{table}
+
+De la tabla se leen, por ejemplo, $P(S)=0.005$, $P(D)=0.08$ y $P(S\cap D)=0.0004$. La probabilidad de que una persona sea sorda o daltónica es
+
+\begin{equation*}
+P(S\cup D)=P(S)+P(D)-P(S\cap D)=0.005+0.08-0.0004=0.0846.
+\end{equation*}
+
+Además,
+
+\begin{equation*}
+P(S\mid D)=\frac{P(S\cap D)}{P(D)}=\frac{0.0004}{0.08}=0.005,
+\qquad
+P(D\mid S)=\frac{P(S\cap D)}{P(S)}=\frac{0.0004}{0.005}=0.08.
+\end{equation*}
+
+En este ejemplo, $P(S\cap D)=P(S)P(D)=0.005\cdot0.08=0.0004$. Por tanto, $S$ y $D$ son independientes: conocer si la persona es daltónica no cambia la probabilidad de sordera, y viceversa. En general, dos sucesos son independientes si $P(A\cap B)=P(A)P(B)$ (equivalentemente, cuando las probabilidades condicionales están definidas, $P(A\mid B)=P(A)$).
+
+\section{Distribución conjunta del color de ojos y del cabello}
+
+Se consideran 5387 personas, clasificadas por color de ojos ($X$) y color de cabello ($Y$). Sean $c_1,\ldots,c_4$ las categorías de ojos (claros, azules, medio y oscuros) y $d_1,\ldots,d_5$ las categorías de cabello (rubio, rojo, medio, oscuro y negro). La frecuencia absoluta conjunta $n_{ij}$ cuenta las personas que pertenecen simultáneamente a la categoría de ojos $c_i$ y a la de cabello $d_j$.
+
+\subsection{Frecuencias absolutas y marginales}
+
+\begin{table}[H]
+\centering
+\small
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|l|r|r|r|r|r|r|}
+\hline
+\textbf{Color de ojos ($X$)} & \textbf{Rubio} & \textbf{Rojo} & \textbf{Medio} & \textbf{Oscuro} & \textbf{Negro} & \textbf{Total} \\ \hline
+Claros ($c_1$)  & 688 & 116 & 584 & 188 & 4  & 1580 \\ \hline
+Azules ($c_2$)  & 326 & 38  & 241 & 110 & 3  & 718 \\ \hline
+Medio ($c_3$)   & 343 & 84  & 909 & 412 & 26 & 1774 \\ \hline
+Oscuros ($c_4$) & 98  & 48  & 403 & 681 & 85 & 1315 \\ \hline
+\textbf{Total} & \textbf{1455} & \textbf{286} & \textbf{2137} & \textbf{1391} & \textbf{118} & \textbf{5387} \\ \hline
+\end{tabular}
+\caption{Frecuencias absolutas conjuntas $n_{ij}$ del color de ojos y del cabello.}
+\label{tab:ojos-cabello-absolutas}
+\end{table}
+
+Las sumas por fila y columna son las frecuencias marginales: $n_{i\cdot}=\sum_j n_{ij}$ y $n_{\cdot j}=\sum_i n_{ij}$. La suma de todas las frecuencias es $n=5387$.
+
+\subsection{Frecuencias relativas conjuntas}
+
+La frecuencia relativa conjunta es $f_{ij}=n_{ij}/n$. La siguiente tabla expresa estas proporciones como porcentajes del total; por redondeo a dos decimales, algunas sumas visuales pueden diferir levemente de $100.00$.
+
+\begin{table}[H]
+\centering
+\small
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|l|r|r|r|r|r|r|}
+\hline
+\multicolumn{7}{|c|}{\textbf{Frecuencias relativas conjuntas (\%)}} \\ \hline
+\textbf{Color de ojos ($X$)} & \textbf{Rubio} & \textbf{Rojo} & \textbf{Medio} & \textbf{Oscuro} & \textbf{Negro} & \textbf{Total} \\ \hline
+Claros ($c_1$)  & 12.77 & 2.15 & 10.84 & 3.49 & 0.07 & 29.33 \\ \hline
+Azules ($c_2$)  & 6.05 & 0.71 & 4.47 & 2.04 & 0.06 & 13.33 \\ \hline
+Medio ($c_3$)   & 6.37 & 1.56 & 16.87 & 7.65 & 0.48 & 32.93 \\ \hline
+Oscuros ($c_4$) & 1.82 & 0.89 & 7.48 & 12.64 & 1.58 & 24.41 \\ \hline
+\textbf{Total} & \textbf{27.01} & \textbf{5.31} & \textbf{39.67} & \textbf{25.82} & \textbf{2.19} & \textbf{100.00} \\ \hline
+\end{tabular}
+\caption{Frecuencias relativas conjuntas $f_{ij}$, expresadas como porcentaje del total.}
+\label{tab:ojos-cabello-relativas}
+\end{table}
+
+\section{Perfiles condicionales}
+
+Los perfiles muestran distribuciones condicionales a partir de la tabla conjunta. El perfil fila divide cada celda por el total de su fila, por lo que describe el color de cabello dado el color de ojos:
+
+\begin{equation*}
+f_{j|i}=\frac{n_{ij}}{n_{i\cdot}},\qquad \sum_{j=1}^{5}f_{j|i}=1.
+\end{equation*}
+
+\begin{table}[H]
+\centering
+\small
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|l|r|r|r|r|r|r|}
+\hline
+\textbf{Color de ojos ($X$)} & \textbf{Rubio} & \textbf{Rojo} & \textbf{Medio} & \textbf{Oscuro} & \textbf{Negro} & \textbf{Total} \\ \hline
+Claros ($c_1$)  & 0.4354 & 0.0734 & 0.3696 & 0.1190 & 0.0025 & 1.0000 \\ \hline
+Azules ($c_2$)  & 0.4540 & 0.0529 & 0.3357 & 0.1532 & 0.0042 & 1.0000 \\ \hline
+Medio ($c_3$)   & 0.1933 & 0.0474 & 0.5124 & 0.2322 & 0.0147 & 1.0000 \\ \hline
+Oscuros ($c_4$) & 0.0745 & 0.0365 & 0.3065 & 0.5179 & 0.0646 & 1.0000 \\ \hline
+\textbf{Perfil marginal del cabello} & \textbf{0.2701} & \textbf{0.0531} & \textbf{0.3967} & \textbf{0.2582} & \textbf{0.0219} & \textbf{1.0000} \\ \hline
+\end{tabular}
+\caption{Perfiles fila: distribución del color de cabello condicionada al color de ojos.}
+\label{tab:perfil-fila-ojos-cabello}
+\end{table}
+
+El perfil marginal del cabello se obtiene de las frecuencias marginales $n_{\cdot j}/n$ y es el centroide de los perfiles fila ponderados por las proporciones de cada categoría de ojos.
+
+El perfil columna divide cada celda por el total de su columna. Describe el color de ojos dado el color de cabello:
+
+\begin{equation*}
+f_{i|j}=\frac{n_{ij}}{n_{\cdot j}},\qquad \sum_{i=1}^{4}f_{i|j}=1.
+\end{equation*}
+
+\begin{table}[H]
+\centering
+\small
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|l|r|r|r|r|r|r|}
+\hline
+\textbf{Color de ojos ($X$)} & \textbf{Rubio} & \textbf{Rojo} & \textbf{Medio} & \textbf{Oscuro} & \textbf{Negro} & \textbf{Marginal de $X$} \\ \hline
+Claros ($c_1$)  & 0.4729 & 0.4056 & 0.2733 & 0.1352 & 0.0339 & 0.2933 \\ \hline
+Azules ($c_2$)  & 0.2241 & 0.1329 & 0.1128 & 0.0791 & 0.0254 & 0.1333 \\ \hline
+Medio ($c_3$)   & 0.2357 & 0.2937 & 0.4254 & 0.2962 & 0.2203 & 0.3293 \\ \hline
+Oscuros ($c_4$) & 0.0674 & 0.1678 & 0.1886 & 0.4896 & 0.7203 & 0.2441 \\ \hline
+\textbf{Total} & \textbf{1.0000} & \textbf{1.0000} & \textbf{1.0000} & \textbf{1.0000} & \textbf{1.0000} & \textbf{1.0000} \\ \hline
+\end{tabular}
+\caption{Perfiles columna: distribución del color de ojos condicionada al color de cabello.}
+\label{tab:perfil-columna-ojos-cabello}
+\end{table}
+
+El perfil marginal de ojos está formado por las proporciones $n_{i\cdot}/n$ y corresponde al centroide de los perfiles columna ponderados por las proporciones de cada categoría de cabello. Los perfiles fila y columna permiten comparar distribuciones condicionales; sus valores no deben confundirse con las frecuencias relativas conjuntas.

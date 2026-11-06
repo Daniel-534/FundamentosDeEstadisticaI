@@ -1,0 +1,131 @@
+\chapter{Clase 2: Distribuciones condicionales y tablas multidimensionales}
+
+\section{Distribuciones condicionales}
+
+Una distribución condicional describe cómo se distribuye una variable cuando se conoce el valor o la categoría de otra. Sean $X$ y $Y$ dos variables con modalidades $c_1,\ldots,c_m$ y $d_1,\ldots,d_k$, respectivamente. La distribución de $X$ condicionada a $Y=d_j$ considera únicamente las unidades que cumplen esa condición.
+
+La frecuencia absoluta condicional $n_{i|j}$ cuenta las unidades con $X=c_i$ dentro del grupo $Y=d_j$. Por ello, es igual a la frecuencia conjunta $n_{ij}$. La frecuencia relativa condicional se calcula dividiendo por el total del grupo condicionado:
+
+\begin{equation*}
+n_{i|j}=n_{ij},\qquad
+f_{i|j}=\frac{n_{i|j}}{n_{\cdot j}}=\frac{n_{ij}}{n_{\cdot j}}=\frac{f_{ij}}{f_{\cdot j}},\quad n_{\cdot j}>0.
+\end{equation*}
+
+Para cada $j$ fijo, $\sum_{i=1}^{m}f_{i|j}=1$. Análogamente, la distribución de $Y$ condicionada a $X=c_i$ se obtiene con $n_{j|i}=n_{ij}$ y $f_{j|i}=n_{ij}/n_{i\cdot}$, donde $n_{i\cdot}>0$.
+
+\subsection{Ejemplo: color de ojos}
+
+En la Tabla~\ref{tab:ojos-personas-madres} de la Clase 1, $X$ representa el color de ojos de la persona y $Y$ el de su madre. Consideremos claros los colores miel, verde y azul. Al sumar esas columnas, obtenemos la distribución del color de ojos de la persona dado que su madre tiene ojos claros:
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|l|r|c|r|}
+\hline
+\textbf{Color de ojos ($X$)} & \textbf{$n_{i|\text{claro}}$} & \textbf{$f_{i|\text{claro}}$} & \textbf{Porcentaje} \\ \hline
+Café  & 8  & $8/57$  & 14.04\% \\ \hline
+Miel  & 13 & $13/57$ & 22.81\% \\ \hline
+Verde & 13 & $13/57$ & 22.81\% \\ \hline
+Azul  & 23 & $23/57$ & 40.35\% \\ \hline
+\textbf{Total} & \textbf{57} & \textbf{1} & \textbf{100\%} \\ \hline
+\end{tabular}
+\caption{Distribución del color de ojos de la persona dado que el de su madre es claro.}
+\label{tab:ojos-condicional}
+\end{table}
+
+Por ejemplo, para personas con ojos café, la frecuencia condicional es $5+2+1=8$; el total de madres con ojos claros es $57$. Así, $f_{\text{café}|\text{claro}}=8/57\approx0.1404$.
+
+\subsection{Ejemplo: visitas al cine dado que no se asistió al teatro}
+
+En la Tabla~\ref{tab:asistencia-cine-teatro} de la Clase 1, $X$ es el número de visitas al cine y $Y$ el número de visitas al teatro. Para obtener la distribución de $X$ dado $Y=0$, dividimos las frecuencias de esa columna por su total $f_{\cdot 0}=0.415$. En la muestra de 200 estudiantes, este grupo contiene 83 personas.
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|c|r|c|r|}
+\hline
+\textbf{Visitas al cine ($X$)} & \textbf{$n_{i|0}$} & \textbf{$f_{i|0}$} & \textbf{Porcentaje} \\ \hline
+1 vez & 40 & $40/83\approx0.4819$ & 48.19\% \\ \hline
+2 veces & 25 & $25/83\approx0.3012$ & 30.12\% \\ \hline
+3 veces & 10 & $10/83\approx0.1205$ & 12.05\% \\ \hline
+4 veces & 8  & $8/83\approx0.0964$  & 9.64\% \\ \hline
+\textbf{Total} & \textbf{83} & \textbf{1} & \textbf{100\%} \\ \hline
+\end{tabular}
+\caption{Distribución de las visitas al cine entre quienes no asistieron al teatro.}
+\label{tab:cine-condicional-teatro-cero}
+\end{table}
+
+Por ejemplo, entre quienes no fueron al teatro, aproximadamente el 48.19\% fue al cine una vez. Los conteos se obtienen de las frecuencias relativas de la tabla original multiplicadas por 200.
+
+\section{Distribuciones conjuntas de tres variables}
+
+Cuando se observan tres variables simultáneamente, cada unidad se clasifica según una combinación de tres modalidades. Sean $i$ el nivel de estudios, $j$ el medio de comunicación preferido y $k$ el sexo. La frecuencia $n_{ijk}$ cuenta las personas que presentan simultáneamente esas modalidades:
+
+\begin{equation*}
+n_{ijk}=\#\{r:X_r=c_i,\ Y_r=d_j,\ Z_r=e_k\},\qquad i=1,2;\quad j=1,2,3;\quad k=1,2.
+\end{equation*}
+
+La siguiente tabla presenta los datos ilustrativos; las filas identifican las combinaciones de nivel de estudios y sexo.
+
+\begin{table}[H]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|l|l|r|r|r|r|}
+\hline
+\textbf{Nivel ($i$)} & \textbf{Sexo ($k$)} & \textbf{Prensa ($j=1$)} & \textbf{Radio ($j=2$)} & \textbf{TV ($j=3$)} & \textbf{Total} \\ \hline
+Media-básica ($i=1$) & Varón ($k=1$) & 30 & 40 & 90 & 160 \\ \hline
+Media-básica ($i=1$) & Mujer ($k=2$) & 25 & 35 & 75 & 135 \\ \hline
+Superior ($i=2$) & Varón ($k=1$) & 80 & 50 & 20 & 150 \\ \hline
+Superior ($i=2$) & Mujer ($k=2$) & 65 & 55 & 35 & 155 \\ \hline
+\textbf{Total} & & \textbf{200} & \textbf{180} & \textbf{220} & \textbf{600} \\ \hline
+\end{tabular}
+\caption{Frecuencias conjuntas de nivel de estudios, sexo y medio preferido.}
+\label{tab:frecuencias-tres-variables}
+\end{table}
+
+Las frecuencias marginales se obtienen sumando sobre los índices que se omiten:
+
+\begin{align*}
+n_{i\cdot\cdot}&=\sum_{j=1}^{3}\sum_{k=1}^{2}n_{ijk}, &
+n_{\cdot j\cdot}&=\sum_{i=1}^{2}\sum_{k=1}^{2}n_{ijk}, &
+n_{\cdot\cdot k}&=\sum_{i=1}^{2}\sum_{j=1}^{3}n_{ijk},\\
+n_{ij\cdot}&=\sum_{k=1}^{2}n_{ijk}, &
+n_{i\cdot k}&=\sum_{j=1}^{3}n_{ijk}, &
+n_{\cdot jk}&=\sum_{i=1}^{2}n_{ijk}.
+\end{align*}
+
+Por ejemplo, $n_{1\cdot\cdot}=295$ es el total del nivel media-básica, $n_{\cdot1\cdot}=200$ es el total que prefiere la prensa y $n_{\cdot\cdot1}=310$ es el total de varones. Además, $n_{1,2,\cdot}=75$ cuenta a quienes tienen nivel media-básica y prefieren la radio, sin distinguir el sexo.
+
+\section{Pruebas diagnósticas}
+
+Una prueba diagnóstica compara el resultado obtenido con el estado real de las personas. La tabla siguiente resume un ejemplo didáctico de 99 mujeres:
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|l|r|r|r|}
+\hline
+ & \textbf{Prueba positiva} & \textbf{Prueba negativa} & \textbf{Total real} \\ \hline
+\textbf{Embarazada} & 80 & 5 & 85 \\ \hline
+\textbf{No embarazada} & 3 & 11 & 14 \\ \hline
+\textbf{Total del resultado} & \textbf{83} & \textbf{16} & \textbf{99} \\ \hline
+\end{tabular}
+\caption{Tabla de contingencia de una prueba diagnóstica.}
+\label{tab:prueba-diagnostica}
+\end{table}
+
+Un \textbf{falso positivo} ocurre cuando la prueba resulta positiva en una persona no embarazada; un \textbf{falso negativo}, cuando resulta negativa en una persona embarazada. Los casos restantes son verdaderos positivos y verdaderos negativos. De la tabla se obtienen:
+
+\begin{itemize}
+    \item \textbf{Sensibilidad:} proporción de personas embarazadas con resultado positivo, $80/85\approx94.12\%$.
+    \item \textbf{Especificidad:} fracción de no embarazadas con prueba negativa: $11/14\approx78.57\%$.
+    \item \textbf{Valor predictivo positivo:} proporción de resultados positivos que corresponden a personas embarazadas, $80/83\approx96.39\%$.
+    \item \textbf{Valor predictivo negativo:} proporción de resultados negativos que corresponden a personas no embarazadas, $11/16=68.75\%$.
+\end{itemize}
+
+La sensibilidad y la especificidad condicionan por el estado real; los valores predictivos condicionan por el resultado de la prueba. Por ello, responden preguntas distintas.

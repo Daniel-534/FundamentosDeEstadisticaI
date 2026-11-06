@@ -3,36 +3,34 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
-
-% Core packages
-\usepackage{amsmath,amssymb,mathrsfs}
-\usepackage{tikz-cd}
-\usepackage{multicol}
-\usepackage{enumerate}
-\usepackage{parskip}
-\usepackage{tabularray}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{babel}
 \usepackage[hidelinks]{hyperref}
-
-% Paragraphs
+\usepackage{parskip}
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{1\baselineskip}
-
-\title{Fundamentos de Estadística I}
-\author{Daniel Soto Villada}
-\date{\today}
 
 \begin{document}
-\hypersetup{pageanchor=false}
-\maketitle
-\hypersetup{pageanchor=true}
-\tableofcontents
-\clearpage
+\begin{center}
+    {\Large\textbf{Notas de clase}}\\[0.3em]
+    {\large Fundamentos de Estadística I}\\
+    Semestre 2026-2\\
+    Instituto de Matemáticas, Universidad de Antioquia\\
+    Autor: Daniel Soto Villada\\
+    \today
+\end{center}
 
-% Clases
-\input{Clases/Clase1}
-\input{Clases/Clase2}
-\input{Clases/Clase3}
-\input{Clases/Clase4}
-\input{Clases/Clase5}
+\begingroup
+\let\clearpage\relax
+\let\cleardoublepage\relax
+\tableofcontents
+\endgroup
+
+
+\input{ClasesIII/Clase1}
+\input{ClasesIII/Clase2}
+
 
 \end{document}

@@ -1,0 +1,23 @@
+\begin{tikzpicture}[scale=0.78]
+    \foreach \shift/\title in {0/{Covarianza positiva},6.2/{Covarianza negativa},12.4/{Covarianza casi nula}} {
+        \begin{scope}[xshift=\shift cm]
+            \draw[->,gray] (-2.7,0) -- (2.7,0);
+            \draw[->,gray] (0,-2.7) -- (0,2.7);
+            \node[font=\scriptsize,below right] at (1.9,-0.12) {$x-\bar{x}$};
+            \node[font=\scriptsize,above left] at (0,2.7) {$y-\bar{y}$};
+            \node[font=\small] at (0,-3.35) {\title};
+        \end{scope}
+    }
+    \begin{scope}
+        \foreach \x/\y in {-2/-2,-1/-1.5,-1.5/-0.8,-0.8/-1,0.8/0.8,1/1.5,1.5/0.8,2/2} {\fill[blue!70!black] (\x,\y) circle (2.2pt);}
+        \node[font=\scriptsize] at (1.75,2.5) {$S_{XY}>0$};
+    \end{scope}
+    \begin{scope}[xshift=6.2cm]
+        \foreach \x/\y in {-2/2,-1/1.5,-1.5/0.8,-0.8/1,0.8/-0.8,1/-1.5,1.5/-0.8,2/-2} {\fill[blue!70!black] (\x,\y) circle (2.2pt);}
+        \node[font=\scriptsize] at (1.75,2.5) {$S_{XY}<0$};
+    \end{scope}
+    \begin{scope}[xshift=12.4cm]
+        \foreach \x/\y in {-2/1,-1/-2,-1.5/0.4,-0.8/1.6,0.8/-1.6,1.5/-0.4,1/2,2/-1} {\fill[blue!70!black] (\x,\y) circle (2.2pt);}
+        \node[font=\scriptsize] at (1.75,2.5) {$S_{XY}\approx0$};
+    \end{scope}
+\end{tikzpicture}

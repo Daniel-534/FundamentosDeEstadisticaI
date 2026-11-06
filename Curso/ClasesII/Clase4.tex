@@ -1,0 +1,71 @@
+\chapter{Clase 4: Covarianza y correlación}
+
+\section{Covarianza entre dos variables}
+
+Consideremos dos variables cuantitativas $X$ y $Y$, observadas conjuntamente en $n$ unidades. Para cada observación $i$, el par $(x_i,y_i)$ indica los valores de ambas variables en la misma unidad. La covarianza describe si, en promedio, las desviaciones de $X$ y de $Y$ respecto de sus medias tienden a tener el mismo signo o signos opuestos.
+
+\subsection{Definición poblacional}
+
+Si la población contiene $N$ pares $(x_i,y_i)$, su covarianza se define como
+
+$$
+\operatorname{Cov}(X,Y) = \sigma_{XY} = \frac{1}{N}\sum_{i=1}^{N}(x_i-\mu_X)(y_i-\mu_Y),
+$$
+
+donde $\mu_X$ y $\mu_Y$ son las medias poblacionales de $X$ y $Y$. La sumatoria agrega, para cada individuo, el producto de las dos desviaciones con respecto a sus medias.
+
+\subsection{Covarianza muestral}
+
+Cuando se dispone de una muestra de $n$ pares, se utiliza la covarianza muestral
+
+$$
+s_{XY} = \operatorname{cov}(X,Y) = \frac{1}{n-1}\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y}),
+$$
+
+donde $\bar{x}$ y $\bar{y}$ son las medias muestrales. El divisor $n-1$ es el habitual para estimar la covarianza poblacional a partir de una muestra.
+
+\section{El signo de la covarianza en un diagrama de dispersión}
+
+En un diagrama de dispersión, las líneas $x=\bar{x}$ y $y=\bar{y}$ separan el plano en cuatro regiones. El signo de la contribución de cada observación a la suma de covarianza depende del producto $(x_i-\bar{x})(y_i-\bar{y})$:
+
+\begin{itemize}
+    \item Si $x_i>\bar{x}$ y $y_i>\bar{y}$, ambas desviaciones son positivas y su producto es positivo.
+    \item Si $x_i<\bar{x}$ y $y_i<\bar{y}$, ambas desviaciones son negativas y su producto también es positivo.
+    \item Si una observación queda por encima de una media y por debajo de la otra, las desviaciones tienen signos opuestos y su producto es negativo.
+\end{itemize}
+
+La figura ilustra cómo se suman estas contribuciones. Una covarianza positiva aparece cuando predominan los productos positivos; una negativa, cuando predominan los productos negativos. Los puntos exactamente sobre una de las medias aportan cero.
+
+\begin{figure}[htbp]
+    \centering
+    \input{ClasesII/Figuras/signo_covarianza.tex}
+    \caption{Las desviaciones respecto de las medias tienen productos positivos en los cuadrantes superior derecho e inferior izquierdo, y negativos en los otros dos.}
+    \label{fig:signo-covarianza}
+\end{figure}
+
+La covarianza informa la dirección de la variación conjunta, pero su magnitud depende de las unidades de medición. Por ello, no existe un límite fijo común para sus valores y no debe compararse directamente entre pares de variables medidos en escalas distintas.
+
+\section{Correlación lineal}
+
+La correlación estandariza la covarianza dividiéndola por el producto de las desviaciones estándar. Para una población, el coeficiente de correlación lineal es
+
+$$
+\rho_{XY} = \frac{\operatorname{Cov}(X,Y)}{\sigma_X\sigma_Y}.
+$$
+
+Para una muestra, se calcula mediante
+
+$$
+r_{XY} = \frac{s_{XY}}{s_Xs_Y},
+$$
+
+donde $s_X$ y $s_Y$ son las desviaciones estándar muestrales. Siempre que ambas variables tengan variabilidad, el coeficiente cumple $-1\leq r_{XY}\leq 1$:
+
+\begin{itemize}
+    \item $r_{XY}>0$ indica asociación lineal positiva: los valores mayores de una variable tienden a acompañarse de valores mayores de la otra.
+    \item $r_{XY}<0$ indica asociación lineal negativa: los valores mayores de una variable tienden a acompañarse de valores menores de la otra.
+    \item Un valor cercano a cero indica poca asociación lineal; no descarta una relación no lineal.
+    \item $r_{XY}=1$ o $r_{XY}=-1$ corresponde a una relación lineal positiva o negativa perfecta en los datos.
+\end{itemize}
+
+La correlación no depende de las unidades de medida, a diferencia de la covarianza, pero describe únicamente la intensidad y dirección de la asociación lineal. Por sí sola no demuestra una relación de causa y efecto.

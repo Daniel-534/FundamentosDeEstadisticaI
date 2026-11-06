@@ -1,0 +1,20 @@
+\begin{tikzpicture}[x=0.105cm,y=0.065cm]
+    \draw[step=10,gray!25,very thin] (0,30) grid (80,110);
+    \draw[->,thick] (0,30) -- (83,30) node[right] {$X$};
+    \draw[->,thick] (0,30) -- (0,113) node[above] {$Y$};
+    \draw[blue!70!black,thick] (0,43) -- (80,99);
+    \node[blue!70!black,fill=white,inner sep=2pt,font=\small] at (39,106)
+        {$\mathbb{E}(Y\mid X=x)=\alpha+\beta x$};
+    \draw[densely dashed,red!70!black] (15,53.5) -- (15,60);
+    \draw[densely dashed,red!70!black] (40,71) -- (40,66);
+    \draw[densely dashed,red!70!black] (65,88.5) -- (65,95);
+    \fill[black] (15,60) circle (2pt);
+    \fill[black] (40,66) circle (2pt);
+    \fill[black] (65,95) circle (2pt);
+    \node[font=\scriptsize,red!70!black,above] at (15,61) {$\varepsilon_1$};
+    \node[font=\scriptsize,red!70!black,below] at (40,65) {$\varepsilon_2$};
+    \node[font=\scriptsize,red!70!black,right] at (69,95) {$\varepsilon_3$};
+    \node[below,font=\scriptsize] at (15,30) {$x_1$};
+    \node[below,font=\scriptsize] at (40,30) {$x_2$};
+    \node[below,font=\scriptsize] at (65,30) {$x_3$};
+\end{tikzpicture}

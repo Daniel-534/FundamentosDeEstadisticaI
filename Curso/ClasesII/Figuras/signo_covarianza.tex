@@ -1,0 +1,37 @@
+\begin{tikzpicture}[x=1.25cm,y=1.05cm,every node/.style={font=\small}]
+    % Ejes y medias de la nube de datos: \bar{x}=5 y \bar{y}=4.5.
+    \draw[->,thick] (0,0) -- (10.6,0) node[right] {$x$};
+    \draw[->,thick] (0,0) -- (0,9.1) node[above] {$y$};
+
+    \foreach \x in {1,...,10}
+        \draw (\x,0.08) -- (\x,-0.08) node[below=3pt] {\x};
+    \foreach \y in {1,...,8}
+        \draw (0.08,\y) -- (-0.08,\y) node[left=3pt] {\y};
+
+    \draw[densely dashed,gray!75,thick] (5,0) -- (5,8.5)
+        node[above,black] {$x=\bar{x}$};
+    \draw[densely dashed,gray!75,thick] (0,4.5) -- (10,4.5)
+        node[right,black] {$y=\bar{y}$};
+
+    % Puntos simétricos respecto de (5,4.5), de modo que las medias son exactas.
+    \foreach \x/\y in {
+        1.5/1.7, 8.5/7.3, 2.2/3.0, 7.8/6.0, 2.9/2.5, 7.1/6.5,
+        3.8/4.0, 6.2/5.0, 4.4/3.6, 5.6/5.4, 5.8/4.2, 4.2/4.8,
+        6.7/4.9, 3.3/4.1, 7.4/5.8, 2.6/3.2, 8.3/6.6, 1.7/2.4
+    }
+        \fill[blue!70!black] (\x,\y) circle (2.7pt);
+
+    % Observación resaltada en el cuadrante superior derecho.
+    % Proyecciones de la observacion resaltada sobre los ejes.
+    \draw[dotted,orange!80!black,thick] (7.4,0) -- (7.4,5.8);
+    \draw[dotted,orange!80!black,thick] (0,5.8) -- (7.4,5.8);
+    \fill[orange!80!black] (7.4,0) circle (1.5pt);
+    \fill[orange!80!black] (0,5.8) circle (1.5pt);
+    \node[below=15pt,text=orange!60!black] at (7.4,0) {$x_i$};
+    \node[left=8pt,text=orange!60!black] at (0,5.8) {$y_i$};
+    \draw[orange!85!black,thick] (7.4,5.8) circle (5pt);
+    \draw[->,orange!85!black,thick] (7.55,5.95) -- (7.9,7.8);
+    \node[align=left,anchor=west,text=orange!60!black] at (8.1,8.35)
+        {$x_i>\bar{x},\quad y_i>\bar{y}$\\
+         $(x_i-\bar{x})(y_i-\bar{y})>0$};
+\end{tikzpicture}
