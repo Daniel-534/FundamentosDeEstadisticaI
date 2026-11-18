@@ -1,0 +1,42 @@
+\begin{tikzpicture}[x=0.78cm,y=1.65cm,font=\scriptsize]
+    \draw[->,thick] (5,-2.25) -- (21.2,-2.25) node[right] {Valor ajustado, $\widehat Y$ (miles)};
+    \draw[->,thick] (5,-2.25) -- (5,1.8);
+    \foreach \xx in {6,8,10,12,14,16,18,20} {
+        \draw[gray!35] (\xx,-2.1) -- (\xx,1.55);
+        \node[below=2pt] at (\xx,-2.25) {\xx};
+    }
+    \foreach \yy in {-2,-1,0,1} {
+        \draw[gray!35] (5,\yy) -- (20.8,\yy);
+        \node[left=2pt] at (5,\yy) {\yy};
+    }
+    \draw[red!70!black,dashed,thick] (5,0) -- (20.8,0) node[right] {$e=0$};
+    \fill[blue!70!black] (6.6070,-0.5070) circle (2.3pt);
+    \fill[blue!70!black] (8.5971,0.5029) circle (2.3pt);
+    \fill[blue!70!black] (7.2308,-0.0308) circle (2.3pt);
+    \fill[blue!70!black] (6.2209,1.2791) circle (2.3pt);
+    \fill[blue!70!black] (7.8842,-0.9842) circle (2.3pt);
+    \fill[blue!70!black] (11.3000,0.2000) circle (2.3pt);
+    \fill[blue!70!black] (10.3495,-0.0495) circle (2.3pt);
+    \fill[blue!70!black] (9.1317,0.3683) circle (2.3pt);
+    \fill[blue!70!black] (11.0327,-1.8327) circle (2.3pt);
+    \fill[blue!70!black] (11.5970,-0.9970) circle (2.3pt);
+    \fill[blue!70!black] (12.1911,0.3089) circle (2.3pt);
+    \fill[blue!70!black] (12.8446,0.0554) circle (2.3pt);
+    \fill[blue!70!black] (14.5079,-0.0079) circle (2.3pt);
+    \fill[blue!70!black] (13.0228,0.5772) circle (2.3pt);
+    \fill[blue!70!black] (12.3396,0.4604) circle (2.3pt);
+    \fill[blue!70!black] (16.6168,-0.1168) circle (2.3pt);
+    \fill[blue!70!black] (17.1811,-0.0811) circle (2.3pt);
+    \fill[blue!70!black] (15.2208,-0.2208) circle (2.3pt);
+    \fill[blue!70!black] (15.8742,0.3258) circle (2.3pt);
+    \fill[blue!70!black] (15.0723,0.7277) circle (2.3pt);
+    \fill[blue!70!black] (18.8445,0.1555) circle (2.3pt);
+    \fill[blue!70!black] (20.2999,-0.8999) circle (2.3pt);
+    \fill[blue!70!black] (18.0722,1.0278) circle (2.3pt);
+    \fill[blue!70!black] (18.9039,-0.9039) circle (2.3pt);
+    \fill[blue!70!black] (19.5574,0.6426) circle (2.3pt);
+    \node[above right,fill=white,inner sep=1pt] at (11.3000,-1.8327) {9};
+    \node[above left,fill=white,inner sep=1pt] at (6.2209,1.2791) {4};
+    \node[above right,fill=white,inner sep=1pt] at (18.0722,1.0278) {23};
+    \node[rotate=90,fill=white,inner sep=1pt] at (3.9,-0.1) {Residuo, $e_i$ (miles)};
+\end{tikzpicture}

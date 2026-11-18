@@ -1,0 +1,39 @@
+\begin{tikzpicture}[x=2.7cm,y=2.4cm,font=\scriptsize]
+    \draw[->,thick] (-2.2,-2.15) -- (2.25,-2.15) node[right] {Cuantil normal teórico};
+    \draw[->,thick] (-2.2,-2.15) -- (-2.2,1.75);
+    \foreach \xx in {-2,-1,0,1,2} {
+        \draw[gray!35] (\xx,-2.05) -- (\xx,1.55);
+        \node[below=2pt] at (\xx,-2.15) {\xx};
+    }
+    \foreach \yy in {-2,-1,0,1} {
+        \draw[gray!35] (-2.1,\yy) -- (2.1,\yy);
+        \node[left=2pt] at (-2.2,\yy) {\yy};
+    }
+    \draw[red!70!black,dashed,thick] (-2.05,-1.489) -- (2.05,1.489);
+    \fill[blue!70!black] (-1.9642,-1.8327) circle (2.3pt);
+    \fill[blue!70!black] (-1.5192,-0.9970) circle (2.3pt);
+    \fill[blue!70!black] (-1.2593,-0.9842) circle (2.3pt);
+    \fill[blue!70!black] (-1.0644,-0.9039) circle (2.3pt);
+    \fill[blue!70!black] (-0.9034,-0.8999) circle (2.3pt);
+    \fill[blue!70!black] (-0.7629,-0.5070) circle (2.3pt);
+    \fill[blue!70!black] (-0.6360,-0.2208) circle (2.3pt);
+    \fill[blue!70!black] (-0.5187,-0.1168) circle (2.3pt);
+    \fill[blue!70!black] (-0.4081,-0.0811) circle (2.3pt);
+    \fill[blue!70!black] (-0.3024,-0.0495) circle (2.3pt);
+    \fill[blue!70!black] (-0.1999,-0.0308) circle (2.3pt);
+    \fill[blue!70!black] (-0.0994,-0.0079) circle (2.3pt);
+    \fill[blue!70!black] (0.0000,0.0554) circle (2.3pt);
+    \fill[blue!70!black] (0.0994,0.1555) circle (2.3pt);
+    \fill[blue!70!black] (0.1999,0.2000) circle (2.3pt);
+    \fill[blue!70!black] (0.3024,0.3089) circle (2.3pt);
+    \fill[blue!70!black] (0.4081,0.3258) circle (2.3pt);
+    \fill[blue!70!black] (0.5187,0.3683) circle (2.3pt);
+    \fill[blue!70!black] (0.6360,0.4604) circle (2.3pt);
+    \fill[blue!70!black] (0.7629,0.5029) circle (2.3pt);
+    \fill[blue!70!black] (0.9034,0.5772) circle (2.3pt);
+    \fill[blue!70!black] (1.0644,0.6426) circle (2.3pt);
+    \fill[blue!70!black] (1.2593,0.7277) circle (2.3pt);
+    \fill[blue!70!black] (1.5192,1.0278) circle (2.3pt);
+    \fill[blue!70!black] (1.9642,1.2791) circle (2.3pt);
+    \node[rotate=90,fill=white,inner sep=1pt] at (-2.35,-0.2) {Residuos ordenados (miles)};
+\end{tikzpicture}

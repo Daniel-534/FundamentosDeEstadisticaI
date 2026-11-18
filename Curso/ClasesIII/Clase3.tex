@@ -1,0 +1,62 @@
+\chapter{Clase 3: Correlación y alcances de la regresión}
+
+\section{Correlación lineal}
+
+En la Clase 2 usamos la covarianza para describir el sentido en que varían conjuntamente dos variables. Sin embargo, su magnitud depende de las unidades de medida: cambiar, por ejemplo, de metros a centímetros cambia el valor numérico de la covarianza. Para describir la intensidad de una asociación lineal con una medida sin unidades se utiliza el \textbf{coeficiente de correlación lineal de Pearson}, que denotamos por $r$.
+
+Para una muestra de pares $(x_i,y_i)$, definimos las sumas centradas
+\[
+C_{XX}=\sum_{i=1}^{n}(x_i-\bar x)^2,\qquad
+C_{YY}=\sum_{i=1}^{n}(y_i-\bar y)^2,\qquad
+C_{XY}=\sum_{i=1}^{n}(x_i-\bar x)(y_i-\bar y).
+\]
+Si $s_X$ y $s_Y$ son las desviaciones estándar muestrales, calculadas con la misma convención que la covarianza $s_{XY}$, entonces
+\[
+r=\frac{s_{XY}}{s_Xs_Y}
+=\frac{C_{XY}}{\sqrt{C_{XX}C_{YY}}}.
+\]
+El segundo cociente muestra que los factores comunes de los denominadores usados para calcular covarianzas y varianzas se cancelan. El coeficiente no tiene unidades y siempre satisface $-1\leq r\leq 1$, siempre que ambas variables tengan variación.
+
+El signo de $r$ indica la dirección de la asociación lineal: si $r>0$, los valores mayores de $X$ suelen presentarse junto con valores mayores de $Y$; si $r<0$, los valores mayores de $X$ suelen presentarse junto con valores menores de $Y$. Cuanto más cerca esté $|r|$ de uno, más cerca de una recta se encuentran los puntos. Un valor cercano a cero indica poca asociación \emph{lineal}, pero no descarta otros patrones. La intensidad debe interpretarse junto con el diagrama de dispersión y el contexto; no hay un único umbral que clasifique como fuerte toda asociación en cualquier problema.
+
+\subsection{Correlación en el ejemplo de calificaciones}
+
+Para los diez estudiantes de las clases anteriores tenemos $C_{XY}=1894$, $C_{XX}=2474$ y
+\[
+C_{YY}=\sum_{i=1}^{n}(y_i-\bar y)^2=2056.
+\]
+Por tanto,
+\[
+r=\frac{1894}{\sqrt{(2474)(2056)}}\approx 0.840.
+\]
+El signo positivo concuerda con la tendencia creciente de la nube de puntos: quienes obtuvieron calificaciones más altas en Matemáticas tendieron también a obtener más puntos en Cálculo. El valor de $r$ resume la fuerza de la asociación lineal en esta muestra, pero no afirma que los puntos estén exactamente sobre una recta.
+
+\section{Relación entre correlación y determinación}
+
+En la regresión lineal simple con intercepto, ajustada por mínimos cuadrados, el coeficiente de determinación cumple
+\[
+R^2=r^2.
+\]
+Como $R^2$ no conserva el signo, la dirección se recupera con la pendiente: $r$ tiene el mismo signo que $b$, de modo que $r=\operatorname{sign}(b)\sqrt{R^2}$. Para el ejemplo, $R^2\approx0.7052$ y $r\approx+\sqrt{0.7052}\approx0.840$. Así, la recta explica cerca del $70.52\%$ de la variación muestral de $Y$, mientras que $r$ también expresa que la asociación lineal es positiva.
+
+Esta igualdad es propia de la regresión lineal simple con intercepto; no debe trasladarse sin más a otros tipos de modelos. Además, aunque $r$ y $R^2$ se relacionan, contestan preguntas distintas: $r$ resume dirección e intensidad lineal, y $R^2$ expresa una proporción de variación explicada por el ajuste.
+
+\section{Correlación e independencia}
+
+La correlación mide asociación lineal, no toda forma posible de dependencia. Si dos variables son independientes y tienen varianzas finitas, su covarianza y su correlación son cero. La implicación inversa no es válida: que $r=0$ solo indica que no se detecta asociación lineal en el resumen de Pearson; puede haber una asociación no lineal clara. Por ejemplo, una nube de puntos con forma aproximadamente simétrica de U puede tener correlación cercana a cero aunque $Y$ cambie sistemáticamente con $X$.
+
+Por ello, antes de interpretar un coeficiente de correlación conviene observar el diagrama de dispersión. Un único número no muestra curvaturas, agrupamientos ni observaciones atípicas que puedan influir notablemente en el resumen lineal.
+
+\section{Poder explicativo y poder predictivo}
+
+El coeficiente $R^2$ describe cuánto de la variación de la respuesta en los datos analizados queda explicado por la recta. Un valor alto es evidencia de buen ajuste lineal dentro de esa muestra, pero por sí solo no garantiza predicciones precisas en nuevos casos. Para valorar la utilidad predictiva también hay que revisar los residuos, como se hizo en la Clase 2: su tamaño, su dispersión a lo largo de los valores ajustados y la posible presencia de patrones.
+
+Una banda residual aproximadamente homogénea y centrada alrededor de cero, sin observaciones excesivamente alejadas, respalda el uso del modelo dentro del rango observado. Patrones sistemáticos o una dispersión que cambia con el ajuste advierten que la recta puede no describir adecuadamente los datos, aun si un resumen global parece favorable.
+
+\section{Asociación no implica causalidad}
+
+Que dos variables estén asociadas o que una recta ajuste bien los datos no demuestra que una variable cause la otra. La relación puede deberse, en parte o por completo, a una tercera variable relacionada con ambas. Por ejemplo, podrían observarse conjuntamente más canas y mayor presión arterial; la edad es una posible variable que influye en ambas y ayuda a explicar esa asociación. Para sostener una conclusión causal se necesita información y un diseño de estudio apropiados, no solo una correlación o una ecuación de regresión.
+
+\section{Precaución al extrapolar}
+
+La recta se ajusta usando observaciones cuyos valores de $X$ están dentro de cierto intervalo. Predecir para un valor de $X$ muy fuera de ese intervalo es \textbf{extrapolar}. Allí no hay datos que indiquen si la tendencia lineal continúa, cambia o deja de ser razonable; por eso las predicciones extrapoladas pueden ser poco confiables. Como regla práctica, se debe informar el rango de $X$ observado y evitar interpretar como seguras predicciones que lo excedan sin justificación adicional.

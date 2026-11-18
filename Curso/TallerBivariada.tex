@@ -1,0 +1,1021 @@
+\documentclass[12pt]{article}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{trees}
+\usepackage[hidelinks]{hyperref}
+\usepackage{parskip}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\begin{center}
+    {\Large\textbf{Taller de tablas de contingencia}}\\[0.3em]
+    Fundamentos de Estadística I
+\end{center}
+
+\section*{Punto 1. Idiomas que hablan los viajeros}
+
+\subsection*{Enunciado}
+
+En un viaje organizado por Europa para 120 personas, 48 saben hablar inglés, 36 saben hablar francés y 12 hablan ambos idiomas. Se escoge al azar uno de los viajeros. Determine:
+
+\begin{enumerate}
+    \item el porcentaje que habla alguno de los dos idiomas;
+    \item el porcentaje que habla francés, sabiendo que habla inglés;
+    \item el porcentaje que habla solo francés.
+\end{enumerate}
+
+\subsection*{Solución}
+
+Sea $I$ el suceso ``habla inglés'' y $F$ el suceso ``habla francés''. Primero completamos la tabla de contingencia. Las cantidades que hablan solamente inglés o solamente francés se obtienen restando quienes hablan ambos idiomas.
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|l|r|r|r|}
+\hline
+ & \textbf{Habla francés ($F$)} & \textbf{No habla francés ($F^c$)} & \textbf{Total} \\ \hline
+\textbf{Habla inglés ($I$)} & 12 & 36 & 48 \\ \hline
+\textbf{No habla inglés ($I^c$)} & 24 & 48 & 72 \\ \hline
+\textbf{Total} & 36 & 84 & 120 \\ \hline
+\end{tabular}
+\caption{Distribución de los viajeros según los idiomas que hablan.}
+\label{tab:idiomas}
+\end{table}
+
+\begin{enumerate}
+    \item Por la regla de adición,
+    \[
+    P(I\cup F)=\frac{48+36-12}{120}=\frac{72}{120}=0.60.
+    \]
+    Por tanto, el $60\%$ habla inglés, francés o ambos idiomas.
+    \item La probabilidad condicional es
+    \[
+    P(F\mid I)=\frac{P(F\cap I)}{P(I)}=\frac{12}{48}=0.25.
+    \]
+    Así, el $25\%$ de quienes hablan inglés también habla francés.
+    \item Hablan solo francés $36-12=24$ personas, de modo que
+    \[
+    P(F\cap I^c)=\frac{24}{120}=0.20.
+    \]
+    El $20\%$ habla únicamente francés.
+\end{enumerate}
+
+\section*{Punto 2. Aprobación de Matemáticas e Inglés}
+
+\subsection*{Enunciado}
+
+En una clase de 30 alumnos, 18 aprobaron Matemáticas, 16 aprobaron Inglés y 6 no aprobaron ninguna de las dos asignaturas. Se elige un alumno al azar. Determine:
+
+\begin{enumerate}
+    \item el porcentaje que aprobó Inglés y Matemáticas;
+    \item el porcentaje que aprobó Inglés entre quienes aprobaron Matemáticas;
+    \item si los sucesos ``aprobar Matemáticas'' y ``aprobar Inglés'' son independientes.
+\end{enumerate}
+
+\subsection*{Solución}
+
+Sean $M$ el suceso ``aprobó Matemáticas'' e $I$ el suceso ``aprobó Inglés''. Como 6 alumnos no aprobaron ninguna, $30-6=24$ aprobaron al menos una. Por inclusión-exclusión, aprobaron ambas $18+16-24=10$ alumnos.
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|l|r|r|r|}
+\hline
+ & \textbf{Matemáticas ($M$)} & \textbf{No Matemáticas ($M^c$)} & \textbf{Total} \\ \hline
+\textbf{Aprobó Inglés ($I$)} & 10 & 6 & 16 \\ \hline
+\textbf{No aprobó Inglés ($I^c$)} & 8 & 6 & 14 \\ \hline
+\textbf{Total} & 18 & 12 & 30 \\ \hline
+\end{tabular}
+\caption{Distribución de los alumnos según la aprobación de las asignaturas.}
+\label{tab:aprobacion}
+\end{table}
+
+\begin{enumerate}
+    \item La proporción que aprobó ambas asignaturas es
+    \[
+    P(I\cap M)=\frac{10}{30}=\frac{1}{3}\approx0.3333,
+    \]
+    es decir, aproximadamente $33.33\%$.
+    \item Entre los 18 alumnos que aprobaron Matemáticas, 10 aprobaron Inglés:
+    \[
+    P(I\mid M)=\frac{10}{18}=\frac{5}{9}\approx0.5556.
+    \]
+    El porcentaje es aproximadamente $55.56\%$.
+    \item No son independientes, pues
+    \[
+    P(I\cap M)=\frac{1}{3}\neq P(I)P(M)
+    =\frac{16}{30}\cdot\frac{18}{30}=0.32.
+    \]
+    Equivalentemente, $P(I\mid M)\approx0.5556$ es distinto de $P(I)=16/30\approx0.5333$.
+\end{enumerate}
+
+\section*{Punto 3. Sexo y estado civil de los clientes}
+
+\subsection*{Enunciado}
+
+Se sortea un viaje a Roma entre 120 clientes de una agencia de automóviles. De ellos, 65 son mujeres, 80 están casados y 45 son mujeres casadas. Determine:
+
+\begin{enumerate}
+    \item la probabilidad de que el ganador sea un hombre soltero;
+    \item la probabilidad de que sea mujer, sabiendo que es una persona casada;
+    \item la probabilidad de que sea hombre o soltero;
+    \item si los sucesos ``ser hombre'' y ``estar casado'' son independientes;
+    \item la probabilidad de que el ganador sea mujer.
+\end{enumerate}
+
+\subsection*{Solución}
+
+Hay $120-65=55$ hombres. De las 80 personas casadas, $80-45=35$ son hombres casados. La tabla completa es:
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|l|r|r|r|}
+\hline
+ & \textbf{Casado ($C$)} & \textbf{Soltero ($C^c$)} & \textbf{Total} \\ \hline
+\textbf{Hombre ($H$)} & 35 & 20 & 55 \\ \hline
+\textbf{Mujer ($W$)} & 45 & 20 & 65 \\ \hline
+\textbf{Total} & 80 & 40 & 120 \\ \hline
+\end{tabular}
+\caption{Distribución de clientes según sexo y estado civil.}
+\label{tab:clientes-estado-civil}
+\end{table}
+
+\begin{enumerate}
+    \item Hay 20 hombres solteros, entonces
+    \[
+    P(H\cap C^c)=\frac{20}{120}=\frac{1}{6}\approx16.67\%.
+    \]
+    \item De las 80 personas casadas, 45 son mujeres:
+    \[
+    P(W\mid C)=\frac{45}{80}=0.5625=56.25\%.
+    \]
+    \item Por inclusión-exclusión,
+    \[
+    P(H\cup C^c)=P(H)+P(C^c)-P(H\cap C^c)
+    =\frac{55+40-20}{120}=\frac{75}{120}=62.5\%.
+    \]
+    \item Los sucesos no son independientes, ya que
+    \[
+    P(H\cap C)=\frac{35}{120}\approx0.2917,
+    \qquad
+    P(H)P(C)=\frac{55}{120}\cdot\frac{80}{120}\approx0.3056.
+    \]
+    Como estas cantidades son distintas, no se cumple el criterio de independencia.
+    \item La probabilidad de que el ganador sea mujer es
+    \[
+    P(W)=\frac{65}{120}=\frac{13}{24}\approx54.17\%.
+    \]
+\end{enumerate}
+
+\section*{Punto 4. Supervivencia en el Titanic}
+
+\subsection*{Enunciado}
+
+El RMS Titanic se hundió durante su viaje inaugural en abril de 1912. El enunciado indica que murieron 451 de las 1334 personas a bordo y presenta las siguientes frecuencias absolutas y relativas, clasificadas por clase, sexo y resultado. Se pide:
+
+\begin{enumerate}
+    \item hallar las marginales bivariadas de frecuencias relativas;
+    \item calcular $P(S\mid W)$, $P(S\mid H)$, $P(W)$, $P(S\cap W)$ y $P(S\cap H)$, donde $W$ significa mujer, $H$ hombre y $S$ sobrevivió;
+    \item decidir si ser mujer fue ventajoso para sobrevivir y justificar;
+    \item completar los perfiles para las clases, distribuyendo las clases $C1$, $C2$ y $C3$ dentro de los grupos sobrevivió ($S$) y no sobrevivió ($NS$).
+\end{enumerate}
+
+\textbf{Frecuencias absolutas proporcionadas:}
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|l|l|r|r|r|r|}
+\hline
+\textbf{Clase} & \textbf{Resultado} & \textbf{Hombres} & \textbf{Mujeres} & \textbf{Niños} & \textbf{Total} \\ \hline
+C1 & Sobrevivió & 58 & 139 & 6 & 203 \\ \hline
+C1 & No sobrevivió & 118 & 4 & 1 & 123 \\ \hline
+C2 & Sobrevivió & 14 & 80 & 25 & 119 \\ \hline
+C2 & No sobrevivió & 154 & 12 & 0 & 166 \\ \hline
+C3 & Sobrevivió & 75 & 91 & 30 & 196 \\ \hline
+C3 & No sobrevivió & 387 & 87 & 53 & 527 \\ \hline
+\textbf{Total} & & \textbf{806} & \textbf{413} & \textbf{115} & \textbf{1334} \\ \hline
+\end{tabular}
+\caption{Frecuencias absolutas por clase, resultado y sexo.}
+\label{tab:titanic-absolutas}
+\end{table}
+
+\textbf{Frecuencias relativas conjuntas proporcionadas (redondeadas):}
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|l|l|r|r|r|}
+\hline
+\textbf{Clase} & \textbf{Resultado} & \textbf{Hombres} & \textbf{Mujeres} & \textbf{Niños} \\ \hline
+C1 & Sobrevivió & 0.04 & 0.10 & 0.00 \\ \hline
+C1 & No sobrevivió & 0.09 & 0.00 & 0.00 \\ \hline
+C2 & Sobrevivió & 0.01 & 0.06 & 0.02 \\ \hline
+C2 & No sobrevivió & 0.12 & 0.01 & 0.00 \\ \hline
+C3 & Sobrevivió & 0.06 & 0.07 & 0.02 \\ \hline
+C3 & No sobrevivió & 0.29 & 0.07 & 0.04 \\ \hline
+\end{tabular}
+\caption{Frecuencias relativas conjuntas redondeadas que aparecen en el enunciado.}
+\label{tab:titanic-relativas-originales}
+\end{table}
+
+\subsection*{Solución}
+
+\textbf{Nota sobre los datos.} Las frecuencias absolutas de la tabla suman 1334, pero contabilizan 816 personas que no sobrevivieron y 518 que sí sobrevivieron. Por tanto, no coinciden con la frase del enunciado que afirma que murieron 451 personas. Para los cálculos siguientes usamos las frecuencias absolutas de las tablas, que son consistentes entre sí. Dividimos cada frecuencia marginal bivariada entre el total $n=1334$; se presentan cuatro decimales.
+
+\textbf{1. Marginales bivariadas de frecuencias relativas.}
+
+Al sumar sobre la tercera variable, se obtienen las tres tablas marginales siguientes.
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|l|r|r|r|}
+\hline
+\textbf{Sexo} & \textbf{Sobrevivió ($S$)} & \textbf{No sobrevivió ($NS$)} & \textbf{Total} \\ \hline
+Hombres & 0.1102 & 0.4940 & 0.6042 \\ \hline
+Mujeres & 0.2324 & 0.0772 & 0.3096 \\ \hline
+Niños & 0.0457 & 0.0405 & 0.0862 \\ \hline
+\textbf{Total} & \textbf{0.3883} & \textbf{0.6117} & \textbf{1.0000} \\ \hline
+\end{tabular}
+\caption{Marginal relativa de sexo y resultado de supervivencia.}
+\label{tab:titanic-marginal-sexo-supervivencia}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|l|r|r|r|}
+\hline
+\textbf{Clase} & \textbf{Sobrevivió ($S$)} & \textbf{No sobrevivió ($NS$)} & \textbf{Total} \\ \hline
+C1 & 0.1522 & 0.0922 & 0.2444 \\ \hline
+C2 & 0.0892 & 0.1244 & 0.2136 \\ \hline
+C3 & 0.1469 & 0.3951 & 0.5420 \\ \hline
+\textbf{Total} & \textbf{0.3883} & \textbf{0.6117} & \textbf{1.0000} \\ \hline
+\end{tabular}
+\caption{Marginal relativa de clase y resultado de supervivencia.}
+\label{tab:titanic-marginal-clase-supervivencia}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|l|r|r|r|r|}
+\hline
+\textbf{Clase} & \textbf{Hombres} & \textbf{Mujeres} & \textbf{Niños} & \textbf{Total} \\ \hline
+C1 & 0.1319 & 0.1072 & 0.0052 & 0.2444 \\ \hline
+C2 & 0.1259 & 0.0690 & 0.0187 & 0.2136 \\ \hline
+C3 & 0.3463 & 0.1334 & 0.0622 & 0.5420 \\ \hline
+\textbf{Total} & \textbf{0.6042} & \textbf{0.3096} & \textbf{0.0862} & \textbf{1.0000} \\ \hline
+\end{tabular}
+\caption{Marginal relativa de clase y sexo.}
+\label{tab:titanic-marginal-clase-sexo}
+\end{table}
+
+Por ejemplo, la celda $(\text{mujer},S)$ de la primera tabla es $310/1334\approx0.2324$. Cada una de estas tablas se obtiene sumando las frecuencias absolutas sobre la variable omitida y dividiendo el resultado entre 1334.
+
+\textbf{2. Probabilidades solicitadas.} En la tabla de frecuencias absolutas, sobrevivieron $139+80+91=310$ mujeres y $58+14+75=147$ hombres. En total hay 413 mujeres y 806 hombres. Por tanto,
+
+\begin{align*}
+P(S\mid W)&=\frac{310}{413}\approx0.7506=75.06\%,\\
+P(S\mid H)&=\frac{147}{806}\approx0.1824=18.24\%,\\
+P(W)&=\frac{413}{1334}\approx0.3096=30.96\%,\\
+P(S\cap W)&=\frac{310}{1334}\approx0.2324=23.24\%,\\
+P(S\cap H)&=\frac{147}{1334}\approx0.1102=11.02\%.
+\end{align*}
+
+\textbf{3. Comparación de supervivencia.} Según los datos tabulados, la proporción de supervivencia entre las mujeres ($75.06\%$) es mayor que entre los hombres ($18.24\%$). En el sentido descriptivo del ejercicio, ser mujer aparece asociado con una mayor probabilidad de sobrevivir. Esto describe una asociación en estos datos y, por sí solo, no demuestra causalidad.
+
+\textbf{4. Perfiles por clase.} Para comparar la distribución de las clases dentro de cada resultado, dividimos cada conteo de clase por el total de su fila: $203/518$, $119/518$ y $196/518$ para sobrevivientes; $123/816$, $166/816$ y $527/816$ para quienes no sobrevivieron.
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|l|r|r|r|r|}
+\hline
+\textbf{Resultado} & \textbf{C1} & \textbf{C2} & \textbf{C3} & \textbf{Total} \\ \hline
+Sobrevivió ($S$) & 0.3919 & 0.2297 & 0.3784 & 1.0000 \\ \hline
+No sobrevivió ($NS$) & 0.1507 & 0.2034 & 0.6458 & 1.0000 \\ \hline
+\textbf{Perfil marginal de clase} & \textbf{0.2444} & \textbf{0.2136} & \textbf{0.5420} & \textbf{1.0000} \\ \hline
+\end{tabular}
+\caption{Perfiles de clase condicionados al resultado de supervivencia.}
+\label{tab:titanic-perfiles-clase}
+\end{table}
+
+Cada fila de perfil suma 1: entre quienes sobrevivieron, por ejemplo, el $39.19\%$ pertenecía a C1; entre quienes no sobrevivieron, el $64.58\%$ pertenecía a C3. El perfil marginal de clase se calcula con los totales generales de clase divididos entre 1334.
+
+
+
+\section*{Punto 5. Sexo y ojos castaños}
+
+\subsection*{Enunciado}
+
+Una clase consta de 10 hombres y 20 mujeres. La mitad de los hombres y la mitad de las mujeres tienen ojos castaños. Determine:
+
+\begin{enumerate}
+    \item la probabilidad de que una persona elegida al azar sea hombre o tenga ojos castaños;
+    \item la probabilidad de que sea mujer, sabiendo que tiene ojos castaños.
+\end{enumerate}
+
+\subsection*{Solución}
+
+Cinco hombres y diez mujeres tienen ojos castaños. Los otros cinco hombres y diez mujeres no los tienen. La tabla de contingencia es:
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|l|r|r|r|}
+\hline
+ & \textbf{Ojos castaños ($C$)} & \textbf{No castaños ($C^c$)} & \textbf{Total} \\ \hline
+\textbf{Hombres ($H$)} & 5 & 5 & 10 \\ \hline
+\textbf{Mujeres ($W$)} & 10 & 10 & 20 \\ \hline
+\textbf{Total} & 15 & 15 & 30 \\ \hline
+\end{tabular}
+\caption{Distribución de estudiantes según sexo y color de ojos.}
+\label{tab:ojos-castanos}
+\end{table}
+
+\begin{enumerate}
+    \item Por inclusión-exclusión,
+    \[
+    P(H\cup C)=P(H)+P(C)-P(H\cap C)
+    =\frac{10+15-5}{30}=\frac{20}{30}=\frac{2}{3}\approx66.67\%.
+    \]
+    \item De las 15 personas con ojos castaños, 10 son mujeres:
+    \[
+    P(W\mid C)=\frac{10}{15}=\frac{2}{3}\approx66.67\%.
+    \]
+\end{enumerate}
+
+\section*{Punto 6. Horario y tipo de reparación de los automóviles}
+
+\subsection*{Enunciado}
+
+Un taller recibe en promedio, por la mañana, tres automóviles con problemas eléctricos, ocho con problemas mecánicos y tres con problemas de chapa. Por la tarde recibe dos con problemas eléctricos, tres con problemas mecánicos y uno con problemas de chapa. Calcule:
+
+\begin{enumerate}
+    \item el porcentaje de automóviles que acude por la tarde;
+    \item el porcentaje que acude por problemas mecánicos;
+    \item la probabilidad de que un automóvil con problemas eléctricos acuda por la mañana;
+    \item la probabilidad de que un automóvil tenga problemas mecánicos o acuda por la tarde.
+\end{enumerate}
+
+\subsection*{Solución}
+
+El número total de automóviles es $3+8+3+2+3+1=20$. Sea $T$ el suceso ``acude por la tarde'' y $M$ el suceso ``tiene un problema mecánico''.
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|l|r|r|r|r|}
+\hline
+\textbf{Horario} & \textbf{Eléctrico ($E$)} & \textbf{Mecánico ($M$)} & \textbf{Chapa ($C$)} & \textbf{Total} \\ \hline
+Mañana ($T^c$) & 3 & 8 & 3 & 14 \\ \hline
+Tarde ($T$) & 2 & 3 & 1 & 6 \\ \hline
+\textbf{Total} & 5 & 11 & 4 & 20 \\ \hline
+\end{tabular}
+\caption{Automóviles atendidos según horario y tipo de problema.}
+\label{tab:taller-horario-problema}
+\end{table}
+
+\begin{enumerate}
+    \item Acuden por la tarde 6 de los 20 automóviles:
+    \[
+    P(T)=\frac{6}{20}=0.30=30\%.
+    \]
+    \item Tienen problemas mecánicos 11 automóviles:
+    \[
+    P(M)=\frac{11}{20}=0.55=55\%.
+    \]
+    \item De los 5 automóviles con problemas eléctricos, 3 llegan por la mañana:
+    \[
+    P(T^c\mid E)=\frac{3}{5}=0.60=60\%.
+    \]
+    \item Por inclusión-exclusión, contando los 3 automóviles que son mecánicos y llegan por la tarde una sola vez,
+    \[
+    P(M\cup T)=\frac{11+6-3}{20}=\frac{14}{20}=0.70=70\%.
+    \]
+\end{enumerate}
+
+\section*{Punto 7. Extracción de bolas de dos bolsas}
+
+\subsection*{Enunciado}
+
+La bolsa A contiene 3 bolas blancas y 7 rojas; la bolsa B contiene 6 bolas blancas y 2 rojas. Se extrae una bola de A, se traslada a B y luego se extrae una bola de B. Determine:
+
+\begin{enumerate}
+    \item la probabilidad de que la bola extraída de B sea blanca;
+    \item la probabilidad de que ambas bolas extraídas sean blancas;
+    \item sabiendo que la bola extraída de B fue roja, la probabilidad de que la bola trasladada desde A haya sido blanca;
+    \item la probabilidad de obtener al menos una bola blanca en las dos extracciones.
+\end{enumerate}
+
+\subsection*{Solución}
+
+Sea $B_A$ el suceso ``la bola trasladada desde A es blanca'' y $B_B$ el suceso ``la bola extraída de B es blanca''. Si se traslada una bola blanca, B queda con 7 blancas y 2 rojas; si se traslada una roja, queda con 6 blancas y 3 rojas.
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Bola trasladada} & \textbf{Probabilidad} & \textbf{Blancas en B} & \textbf{Rojas en B} & \textbf{Total en B} \\ \hline
+Blanca ($B_A$) & $3/10$ & 7 & 2 & 9 \\ \hline
+Roja ($B_A^c$) & $7/10$ & 6 & 3 & 9 \\ \hline
+\end{tabular}
+\caption{Composición de B después de trasladar una bola desde A.}
+\label{tab:bolsas-composicion}
+\end{table}
+
+\begin{enumerate}
+    \item Aplicando la regla de probabilidad total,
+    \[
+    P(B_B)=P(B_B\mid B_A)P(B_A)+P(B_B\mid B_A^c)P(B_A^c)
+    =\frac{7}{9}\frac{3}{10}+\frac{6}{9}\frac{7}{10}
+    =\frac{7}{10}=70\%.
+    \]
+    \item Para que ambas sean blancas, la trasladada debe ser blanca y luego se debe extraer una blanca de B:
+    \[
+    P(B_A\cap B_B)=\frac{3}{10}\cdot\frac{7}{9}
+    =\frac{7}{30}\approx23.33\%.
+    \]
+    \item Si la bola de B fue roja, el evento conjunto de trasladar una blanca y extraer una roja tiene probabilidad
+    $P(B_A\cap B_B^c)=\frac{3}{10}\cdot\frac{2}{9}=\frac{1}{15}$. Además,
+    $P(B_B^c)=1-\frac{7}{10}=\frac{3}{10}$. Por tanto,
+    \[
+    P(B_A\mid B_B^c)=\frac{P(B_A\cap B_B^c)}{P(B_B^c)}
+    =\frac{1/15}{3/10}=\frac{2}{9}\approx22.22\%.
+    \]
+    \item ``Al menos una blanca'' es el complemento de que ambas bolas sean rojas. Para que ambas sean rojas, se traslada una roja ($7/10$) y después se extrae una roja de B ($3/9$):
+    \[
+    P(\text{al menos una blanca})=1-\frac{7}{10}\cdot\frac{3}{9}
+    =1-\frac{7}{30}=\frac{23}{30}\approx76.67\%.
+    \]
+\end{enumerate}
+
+\section*{Punto 8. Garantía y reparación previa de aparatos}
+
+\subsection*{Enunciado}
+
+El 25\% de los aparatos que llegan a un servicio técnico tienen garantía. Entre los que no tienen garantía, el 20\% ya fue reparado anteriormente. Además, el 5\% de todos los aparatos tiene garantía y ya fue reparado anteriormente. Determine:
+
+\begin{enumerate}
+    \item el porcentaje de aparatos que ya fueron reparados;
+    \item el porcentaje que no fue reparado anteriormente y no tiene garantía;
+    \item la probabilidad de que un aparato tenga garantía, dado que ya fue reparado anteriormente.
+\end{enumerate}
+
+\subsection*{Solución}
+
+Sea $G$ el suceso ``tiene garantía'' y $R$ el suceso ``ya fue reparado''. Se conoce $P(G)=0.25$, $P(R\mid G^c)=0.20$ y $P(G\cap R)=0.05$. Primero calculamos
+\[
+P(G^c\cap R)=P(R\mid G^c)P(G^c)=0.20\cdot0.75=0.15.
+\]
+
+La tabla conjunta queda:
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|l|r|r|r|}
+\hline
+ & \textbf{Reparado ($R$)} & \textbf{No reparado ($R^c$)} & \textbf{Total} \\ \hline
+\textbf{Con garantía ($G$)} & 0.05 & 0.20 & 0.25 \\ \hline
+\textbf{Sin garantía ($G^c$)} & 0.15 & 0.60 & 0.75 \\ \hline
+\textbf{Total} & 0.20 & 0.80 & 1.00 \\ \hline
+\end{tabular}
+\caption{Distribución conjunta de garantía y reparación previa.}
+\label{tab:garantia-reparacion}
+\end{table}
+
+\begin{enumerate}
+    \item La probabilidad de reparación previa es
+    \[
+    P(R)=P(G\cap R)+P(G^c\cap R)=0.05+0.15=0.20.
+    \]
+    El $20\%$ de los aparatos ya había sido reparado.
+    \item La probabilidad de no tener garantía ni reparación previa es
+    \[
+    P(G^c\cap R^c)=P(G^c)-P(G^c\cap R)=0.75-0.15=0.60.
+    \]
+    Corresponde al $60\%$ de los aparatos.
+    \item La probabilidad condicional solicitada es
+    \[
+    P(G\mid R)=\frac{P(G\cap R)}{P(R)}=\frac{0.05}{0.20}=0.25.
+    \]
+    Dado que el aparato ya fue reparado, la probabilidad de que tenga garantía es $25\%$.
+\end{enumerate}
+
+
+
+\section*{Punto 9. Turnos de tres jugadores con un dado}
+
+\subsection*{Enunciado}
+
+Tres amigos juegan con un dado y cada uno lanza a lo sumo una vez. El primer jugador gana si obtiene un 6. Si no lo obtiene, lanza el segundo jugador, que gana si obtiene 4 o 5. Si tampoco lo consigue, lanza el tercer jugador, que gana si obtiene 1, 2 o 3. Si el tercero no gana, la partida queda empatada. Calcule la probabilidad de que gane cada jugador y la probabilidad de empate.
+
+\subsection*{Solución}
+
+El árbol muestra las probabilidades de cada rama. Las probabilidades escritas junto a los resultados finales son las probabilidades conjuntas de llegar a ese resultado:
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    terminal/.style={draw,rounded corners,inner sep=3pt,align=center,font=\small},
+    decision/.style={align=center,font=\small},
+    branch label/.style={font=\scriptsize,fill=white,inner sep=1.5pt}
+]
+\node[decision] (inicio) at (0,0) {Inicio};
+\node[decision] (j2) at (3.8,0) {J$_2$ lanza};
+\node[decision] (j3) at (7.2,-1.5) {J$_3$ lanza};
+\node[terminal] (gana1) at (3.8,2.25) {Gana J$_1$\\$P=\frac{1}{6}$};
+\node[terminal] (gana2) at (7.2,0.9) {Gana J$_2$\\$P=\frac{5}{18}$};
+\node[terminal] (gana3) at (10.6,-0.35) {Gana J$_3$\\$P=\frac{5}{18}$};
+\node[terminal] (empate) at (10.6,-2.65) {Empate\\$P=\frac{5}{18}$};
+
+\draw (inicio) -- node[branch label,above left] {6: $1/6$} (gana1);
+\draw (inicio) -- node[branch label,above] {No 6: $5/6$} (j2);
+\draw (j2) -- node[branch label,above left] {4 o 5: $1/3$} (gana2);
+\draw (j2) -- node[branch label,below left] {Falla: $2/3$} (j3);
+\draw (j3) -- node[branch label,above left] {1, 2 o 3: $1/2$} (gana3);
+\draw (j3) -- node[branch label,below left] {4, 5 o 6: $1/2$} (empate);
+\end{tikzpicture}
+\caption{Árbol de probabilidades del juego.}
+\label{fig:arbol-juego-dado}
+\end{figure}
+
+Las probabilidades se obtienen multiplicando las probabilidades de las ramas del camino correspondiente:
+\begin{align*}
+P(J_1\text{ gana})&=\frac{1}{6},\\
+P(J_2\text{ gana})&=\frac{5}{6}\cdot\frac{2}{6}=\frac{5}{18},\\
+P(J_3\text{ gana})&=\frac{5}{6}\cdot\frac{4}{6}\cdot\frac{3}{6}=\frac{5}{18},\\
+P(\text{empate})&=\frac{5}{6}\cdot\frac{4}{6}\cdot\frac{3}{6}=\frac{5}{18}.
+\end{align*}
+
+Como verificación, $1/6+5/18+5/18+5/18=1$.
+
+\section*{Punto 10. Bombillas y defectos}
+
+\subsection*{Enunciado}
+
+Una empresa produce bombillas halógenas y de bajo consumo en proporción de 3 a 4, respectivamente. La probabilidad de que una bombilla halógena sea defectuosa es $0.02$ y la de que una de bajo consumo sea defectuosa es $0.09$. Se elige una bombilla al azar y se observa que no es defectuosa. ¿Cuál es la probabilidad de que sea halógena?
+
+\subsection*{Solución}
+
+Sean $H$ el suceso ``la bombilla es halógena'' y $N$ el suceso ``la bombilla no es defectuosa''. De la proporción de producción,
+$P(H)=3/7$ y $P(H^c)=4/7$. Además, $P(N\mid H)=0.98$ y $P(N\mid H^c)=0.91$.
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Tipo} & \textbf{Proporción} & \textbf{$P(N\mid\text{tipo})$} & \textbf{Contribución a $P(N)$} \\ \hline
+Halógena ($H$) & $3/7$ & 0.98 & $0.42$ \\ \hline
+Bajo consumo ($H^c$) & $4/7$ & 0.91 & $0.52$ \\ \hline
+\textbf{Total} & 1 & & $0.94$ \\ \hline
+\end{tabular}
+\caption{Probabilidades de tipo de bombilla y de no presentar defectos.}
+\label{tab:bombillas-defecto}
+\end{table}
+
+Por Bayes,
+\[
+\begin{aligned}
+P(H\mid N)&=\frac{P(N\mid H)P(H)}{P(N)}\\
+&=\frac{0.98\cdot(3/7)}{0.98\cdot(3/7)+0.91\cdot(4/7)}\\
+&=\frac{0.42}{0.94}=\frac{21}{47}\approx44.68\%.
+\end{aligned}
+\]
+
+\section*{Punto 11. Extracción de bolas de tres cajas}
+
+\subsection*{Enunciado}
+
+Se tienen tres cajas que se eligen con igual probabilidad. La primera contiene tres bolas blancas y cuatro negras; la segunda contiene cinco bolas negras; y la tercera contiene cuatro bolas blancas y tres negras.
+
+\begin{enumerate}
+    \item Si se elige una caja al azar y luego se extrae una bola, ¿cuál es la probabilidad de que la bola sea negra?
+    \item Si la bola extraída es negra, ¿cuál es la probabilidad de que proceda de la segunda caja?
+\end{enumerate}
+
+\subsection*{Solución}
+
+Sea $C_i$ el suceso ``se eligió la caja $i$'' y $N$ el suceso ``la bola extraída es negra''. Cada caja se elige con probabilidad $1/3$.
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Caja} & \textbf{$P(C_i)$} & \textbf{Negras en la caja} & \textbf{$P(N\cap C_i)$} \\ \hline
+1 ($3$ blancas, $4$ negras) & $1/3$ & $4/7$ & $4/21$ \\ \hline
+2 ($5$ negras) & $1/3$ & $1$ & $1/3$ \\ \hline
+3 ($4$ blancas, $3$ negras) & $1/3$ & $3/7$ & $1/7$ \\ \hline
+\textbf{Total} & 1 & & $2/3$ \\ \hline
+\end{tabular}
+\caption{Probabilidades de extraer una bola negra según la caja elegida.}
+\label{tab:cajas-bolas-negras}
+\end{table}
+
+\begin{enumerate}
+    \item Por la regla de probabilidad total,
+    \[
+    P(N)=\sum_{i=1}^{3}P(N\mid C_i)P(C_i)
+    =\frac{1}{3}\left(\frac{4}{7}+1+\frac{3}{7}\right)=\frac{2}{3}.
+    \]
+    La probabilidad de extraer una bola negra es $2/3$.
+    \item Aplicando Bayes,
+    \[
+    P(C_2\mid N)=\frac{P(N\mid C_2)P(C_2)}{P(N)}
+    =\frac{1\cdot(1/3)}{2/3}=\frac{1}{2}.
+    \]
+    Dada una bola negra, la probabilidad de que provenga de la segunda caja es $1/2$.
+\end{enumerate}
+
+\section*{Punto 12. Paridad de la suma de dos lanzamientos}
+
+\subsection*{Enunciado}
+
+Se lanza un dado dos veces. Si en el primer lanzamiento sale un 2, ¿qué es más probable: que la suma de los resultados sea par o que sea impar?
+
+\subsection*{Solución}
+
+Al fijarse el primer resultado en 2, la suma es par exactamente cuando el segundo resultado es par, es decir, cuando sale 2, 4 o 6. Es impar cuando el segundo resultado es 1, 3 o 5. Como los seis resultados del segundo lanzamiento son equiprobables,
+\[
+P(\text{suma par}\mid X_1=2)=\frac{3}{6}=\frac{1}{2},\qquad
+P(\text{suma impar}\mid X_1=2)=\frac{3}{6}=\frac{1}{2}.
+\]
+Ninguna posibilidad es más probable: ambas tienen probabilidad $1/2$.
+
+\section*{Punto 13. Relaciones entre dos sucesos}
+
+\subsection*{Enunciado}
+
+En un experimento aleatorio, la probabilidad del suceso $A$ es el doble que la del suceso $B$. Además, $P(A)+P(B^c)=1.3$ y $P(A\cap B)=0.18$. Calcule:
+
+\begin{enumerate}
+    \item $P(A\cup B)$;
+    \item $P(A^c\cup B^c)$;
+    \item si $A$ y $B$ son independientes.
+\end{enumerate}
+
+\subsection*{Solución}
+
+Sea $P(B)=p$. Entonces $P(A)=2p$ y $P(B^c)=1-p$. La condición dada implica
+\[
+2p+(1-p)=1.3,\qquad p=0.3.
+\]
+Por tanto, $P(B)=0.3$ y $P(A)=0.6$. La tabla conjunta se completa usando $P(A\cap B)=0.18$:
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|l|c|c|c|}
+\hline
+ & \textbf{$B$} & \textbf{$B^c$} & \textbf{Total} \\ \hline
+\textbf{$A$} & 0.18 & 0.42 & 0.60 \\ \hline
+\textbf{$A^c$} & 0.12 & 0.28 & 0.40 \\ \hline
+\textbf{Total} & 0.30 & 0.70 & 1.00 \\ \hline
+\end{tabular}
+\caption{Distribución conjunta de los sucesos $A$ y $B$.}
+\label{tab:sucesos-ab}
+\end{table}
+
+\begin{enumerate}
+    \item Por inclusión-exclusión,
+    \[
+    P(A\cup B)=P(A)+P(B)-P(A\cap B)=0.6+0.3-0.18=0.72.
+    \]
+    \item Por las leyes de De Morgan, $A^c\cup B^c=(A\cap B)^c$, así que
+    \[
+    P(A^c\cup B^c)=1-P(A\cap B)=1-0.18=0.82.
+    \]
+    \item Sí, son independientes, porque
+    \[
+    P(A)P(B)=0.6\cdot0.3=0.18=P(A\cap B).
+    \]
+    \end{enumerate}
+
+\section*{Punto 14. Aprobación de Inglés y Matemáticas}
+
+\subsection*{Enunciado}
+
+Una clase tiene 24 alumnos y todos cursan Inglés y Matemáticas. La mitad aprueba Inglés, 16 aprueban Matemáticas y 4 reprueban ambas asignaturas. Determine:
+
+\begin{enumerate}
+    \item una tabla de contingencia con los resultados de la clase;
+    \item si los sucesos ``aprobar Inglés'' y ``aprobar Matemáticas'' son independientes;
+    \item la probabilidad de que un alumno apruebe Matemáticas y repruebe Inglés.
+\end{enumerate}
+
+\subsection*{Solución}
+
+Sea $I$ el suceso ``aprueba Inglés'' y $M$ el suceso ``aprueba Matemáticas''. Como la mitad de los 24 alumnos aprueba Inglés, $n(I)=12$. Además, $n(M)=16$ y 4 alumnos reprueban ambas materias. Por tanto, 20 aprueban al menos una, y
+\[
+n(I\cap M)=n(I)+n(M)-n(I\cup M)=12+16-20=8.
+\]
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|l|r|r|r|}
+\hline
+ & \shortstack{\textbf{Aprueba}\\\textbf{Matemáticas ($M$)}} & \shortstack{\textbf{Reprueba}\\\textbf{Matemáticas ($M^c$)}} & \textbf{Total} \\ \hline
+\textbf{Aprueba Inglés ($I$)} & 8 & 4 & 12 \\ \hline
+\textbf{Reprueba Inglés ($I^c$)} & 8 & 4 & 12 \\ \hline
+\textbf{Total} & 16 & 8 & 24 \\ \hline
+\end{tabular}
+\caption{Resultados de los alumnos en Inglés y Matemáticas.}
+\label{tab:aprobacion-ingles-matematicas}
+\end{table}
+
+\begin{enumerate}
+    \item La tabla completa los datos y sus frecuencias marginales.
+    \item Los sucesos sí son independientes, pues
+    \[
+    P(I\cap M)=\frac{8}{24}=\frac{1}{3}
+    =\frac{12}{24}\cdot\frac{16}{24}=P(I)P(M).
+    \]
+    \item La probabilidad de aprobar Matemáticas y reprobar Inglés es
+    \[
+    P(M\cap I^c)=\frac{8}{24}=\frac{1}{3}\approx33.33\%.
+    \]
+\end{enumerate}
+
+\section*{Punto 15. Aciertos de dos tiradores}
+
+\subsection*{Enunciado}
+
+Dos tiradores disparan simultáneamente. El primero acierta dos de cada tres disparos y el segundo acierta tres de cada cuatro. Suponiendo que sus resultados son independientes, calcule la probabilidad de que:
+
+\begin{enumerate}
+    \item ambos acierten;
+    \item ninguno acierte;
+    \item exactamente uno acierte;
+    \item al menos uno acierte.
+\end{enumerate}
+
+\subsection*{Solución}
+
+Sean $A$ y $B$ los sucesos de que acierten el primer y el segundo tirador, respectivamente. Entonces $P(A)=2/3$, $P(B)=3/4$, $P(A^c)=1/3$ y $P(B^c)=1/4$.
+
+\begin{enumerate}
+    \item Por independencia,
+    \[
+    P(A\cap B)=P(A)P(B)=\frac{2}{3}\cdot\frac{3}{4}=\frac{1}{2}.
+    \]
+    \item La probabilidad de que ninguno acierte es
+    \[
+    P(A^c\cap B^c)=\frac{1}{3}\cdot\frac{1}{4}=\frac{1}{12}.
+    \]
+    \item Exactamente uno acierta si acierta el primero y falla el segundo, o viceversa:
+    \[
+    P(A\cap B^c)+P(A^c\cap B)
+    =\frac{2}{3}\cdot\frac{1}{4}+\frac{1}{3}\cdot\frac{3}{4}
+    =\frac{5}{12}.
+    \]
+    \item Al menos uno acierta es el complemento de que ninguno lo haga:
+    \[
+    P(A\cup B)=1-P(A^c\cap B^c)=1-\frac{1}{12}=\frac{11}{12}.
+    \]
+\end{enumerate}
+
+\section*{Punto 16. Sexo y voto sobre una propuesta}
+
+\subsection*{Enunciado}
+
+Los ciudadanos de una localidad votaron Sí o No a una propuesta del Ayuntamiento. La tabla presenta los resultados porcentuales. Determine si los sucesos $A=$ ``ser varón'' y $B=$ ``votar Sí'' son independientes.
+
+\subsection*{Solución}
+
+La tabla del enunciado da frecuencias relativas conjuntas y marginales. Las expresamos como proporciones para comprobar la independencia.
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|l|r|r|r|}
+\hline
+\textbf{Voto} & \textbf{Varones} & \textbf{Mujeres} & \textbf{Total} \\ \hline
+Sí ($B$) & 25\% & 40\% & 65\% \\ \hline
+No ($B^c$) & 30\% & 5\% & 35\% \\ \hline
+\textbf{Total} & 55\% & 45\% & 100\% \\ \hline
+\end{tabular}
+\caption{Distribución porcentual del voto según sexo.}
+\label{tab:voto-sexo}
+\end{table}
+
+De la tabla, $P(A)=0.55$, $P(B)=0.65$ y $P(A\cap B)=0.25$. Como
+\[
+P(A)P(B)=0.55\cdot0.65=0.3575\neq0.25=P(A\cap B),
+\]
+los sucesos no son independientes. En particular, la proporción que votó Sí entre los varones es $P(B\mid A)=0.25/0.55\approx0.4545$, distinta de $P(B)=0.65$.
+
+\section*{Punto 17. Neveras defectuosas de cuatro fábricas}
+
+\subsection*{Enunciado}
+
+Una empresa produce neveras en cuatro fábricas. Las fábricas A, B, C y D producen, respectivamente, el 30\%, 20\%, 40\% y 10\% del total. Sus porcentajes de defectuosas son 2\%, 5\%, 4\% y 1\%, respectivamente. Calcule:
+
+\begin{enumerate}
+    \item la probabilidad de que una nevera elegida al azar sea defectuosa;
+    \item la probabilidad de que sea defectuosa y proceda de la fábrica B;
+    \item dado que una nevera es defectuosa, la probabilidad de que proceda de la fábrica D.
+\end{enumerate}
+
+\subsection*{Solución}
+
+Sea $D$ el suceso ``la nevera es defectuosa'' y $F_i$ el suceso ``procede de la fábrica $i$''. Las contribuciones de cada fábrica al total de defectos son:
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|l|r|r|r|}
+\hline
+\textbf{Fábrica} & \textbf{Producción} & \textbf{$P(D\mid F_i)$} & \textbf{$P(F_i\cap D)$} \\ \hline
+A & 30\% & 2\% & 0.006 \\ \hline
+B & 20\% & 5\% & 0.010 \\ \hline
+C & 40\% & 4\% & 0.016 \\ \hline
+D & 10\% & 1\% & 0.001 \\ \hline
+\textbf{Total} & \textbf{100\%} & & \textbf{0.033} \\ \hline
+\end{tabular}
+\caption{Producción y contribución de defectos por fábrica.}
+\label{tab:neveras-fabricas}
+\end{table}
+
+\begin{enumerate}
+    \item Por la regla de probabilidad total,
+    \[
+    P(D)=0.30(0.02)+0.20(0.05)+0.40(0.04)+0.10(0.01)=0.033.
+    \]
+    La probabilidad de defecto es $3.3\%$.
+    \item La probabilidad conjunta de defecto y procedencia de B es
+    \[
+    P(F_B\cap D)=P(F_B)P(D\mid F_B)=0.20\cdot0.05=0.01=1\%.
+    \]
+    \item Por Bayes,
+    \[
+    P(F_D\mid D)=\frac{P(F_D)P(D\mid F_D)}{P(D)}
+    =\frac{0.10\cdot0.01}{0.033}=\frac{1}{33}\approx3.03\%.
+    \]
+\end{enumerate}
+
+\section*{Punto 18. Defectos de impresión en cajas de galletas}
+
+\subsection*{Enunciado}
+
+Una empresa utiliza tres máquinas de envasado. La máquina A envasa el 45\% de las cajas, B el 35\% y C el 20\%. Las proporciones de cajas con defecto de impresión son 1\%, 2\% y 3\%, respectivamente. Calcule:
+
+\begin{enumerate}
+    \item la probabilidad de que una caja elegida al azar tenga un defecto;
+    \item la probabilidad de que proceda de A y tenga un defecto;
+    \item dado que no tiene defectos, la probabilidad de que proceda de C.
+\end{enumerate}
+
+\subsection*{Solución}
+
+Sean $A$, $B$ y $C$ los sucesos de procedencia de cada máquina, y $D$ el suceso ``la caja tiene defecto''. El árbol resume las probabilidades de selección de máquina y las probabilidades condicionales de defecto y ausencia de defecto.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    branch/.style={font=\scriptsize,fill=white,inner sep=1pt},
+    state/.style={font=\small,align=center}
+]
+\node[state] (inicio) at (0,0) {Caja};
+\node[state] (a) at (3,3.2) {Máquina A};
+\node[state] (b) at (3,0) {Máquina B};
+\node[state] (c) at (3,-3.2) {Máquina C};
+\node[state] (ad) at (7,4.1) {$D$};
+\node[state] (an) at (7,2.3) {$D^c$};
+\node[state] (bd) at (7,0.9) {$D$};
+\node[state] (bn) at (7,-0.9) {$D^c$};
+\node[state] (cd) at (7,-2.3) {$D$};
+\node[state] (cn) at (7,-4.1) {$D^c$};
+\draw (inicio) -- node[branch,above left] {$0.45$} (a);
+\draw (inicio) -- node[branch,above] {$0.35$} (b);
+\draw (inicio) -- node[branch,below left] {$0.20$} (c);
+\draw (a) -- node[branch,above left] {$0.01$} (ad);
+\draw (a) -- node[branch,below left] {$0.99$} (an);
+\draw (b) -- node[branch,above left] {$0.02$} (bd);
+\draw (b) -- node[branch,below left] {$0.98$} (bn);
+\draw (c) -- node[branch,above left] {$0.03$} (cd);
+\draw (c) -- node[branch,below left] {$0.97$} (cn);
+\end{tikzpicture}
+\caption{Árbol de probabilidades de máquina y defecto de impresión.}
+\label{fig:arbol-galletas}
+\end{figure}
+
+\begin{enumerate}
+    \item Sumando las probabilidades de las rutas que terminan en defecto,
+    \[
+    P(D)=0.45(0.01)+0.35(0.02)+0.20(0.03)=0.0175=1.75\%.
+    \]
+    \item La probabilidad conjunta de proceder de A y tener defecto es
+    \[
+    P(A\cap D)=0.45(0.01)=0.0045=0.45\%.
+    \]
+    \item Primero, $P(D^c)=1-0.0175=0.9825$. Por Bayes,
+    \[
+    P(C\mid D^c)=\frac{P(C)P(D^c\mid C)}{P(D^c)}
+    =\frac{0.20(0.97)}{0.9825}
+    \approx0.1975=19.75\%.
+    \]
+\end{enumerate}
+
+\section*{Punto 19. Envases defectuosos de una perfumería}
+
+\subsection*{Enunciado}
+
+Una perfumería utiliza tres cadenas de producción A, B y C, que envasa el 20\%, 50\% y 30\% de los perfumes, respectivamente. La probabilidad de defecto en cada cadena es $1/3$, $1/6$ y $1/4$. Calcule:
+
+\begin{enumerate}
+    \item la probabilidad de que un envase elegido al azar no sea defectuoso;
+    \item la probabilidad de que no sea defectuoso y proceda de B;
+    \item dado que un envase es defectuoso, la probabilidad de que proceda de C;
+    \item construya el árbol de probabilidades asociado.
+\end{enumerate}
+
+\subsection*{Solución}
+
+Sea $D$ el suceso ``el envase es defectuoso''. Las probabilidades de no presentar defecto, condicionadas a la cadena, son $P(D^c\mid A)=2/3$, $P(D^c\mid B)=5/6$ y $P(D^c\mid C)=3/4$. El árbol muestra las probabilidades de cada rama:
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    branch/.style={font=\scriptsize,fill=white,inner sep=1pt},
+    state/.style={font=\small,align=center}
+]
+\node[state] (inicio) at (0,0) {Envase};
+\node[state] (a) at (3,3.2) {Cadena A};
+\node[state] (b) at (3,0) {Cadena B};
+\node[state] (c) at (3,-3.2) {Cadena C};
+\node[state] (ad) at (7,4.1) {$D$};
+\node[state] (an) at (7,2.3) {$D^c$};
+\node[state] (bd) at (7,0.9) {$D$};
+\node[state] (bn) at (7,-0.9) {$D^c$};
+\node[state] (cd) at (7,-2.3) {$D$};
+\node[state] (cn) at (7,-4.1) {$D^c$};
+\draw (inicio) -- node[branch,above left] {$1/5$} (a);
+\draw (inicio) -- node[branch,above] {$1/2$} (b);
+\draw (inicio) -- node[branch,below left] {$3/10$} (c);
+\draw (a) -- node[branch,above left] {$1/3$} (ad);
+\draw (a) -- node[branch,below left] {$2/3$} (an);
+\draw (b) -- node[branch,above left] {$1/6$} (bd);
+\draw (b) -- node[branch,below left] {$5/6$} (bn);
+\draw (c) -- node[branch,above left] {$1/4$} (cd);
+\draw (c) -- node[branch,below left] {$3/4$} (cn);
+\end{tikzpicture}
+\caption{Árbol de producción y condición de los envases.}
+\label{fig:arbol-perfumeria}
+\end{figure}
+
+\begin{enumerate}
+    \item Por probabilidad total,
+    \[
+    P(D^c)=\frac{1}{5}\cdot\frac{2}{3}
+    +\frac{1}{2}\cdot\frac{5}{6}
+    +\frac{3}{10}\cdot\frac{3}{4}
+    =\frac{31}{40}=0.775=77.5\%.
+    \]
+    \item La probabilidad conjunta de no tener defecto y proceder de B es
+    \[
+    P(B\cap D^c)=P(B)P(D^c\mid B)
+    =\frac{1}{2}\cdot\frac{5}{6}=\frac{5}{12}.
+    \]
+    \item La probabilidad total de defecto es $P(D)=1-P(D^c)=9/40$. Por Bayes,
+    \[
+    P(C\mid D)=\frac{P(C)P(D\mid C)}{P(D)}
+    =\frac{(3/10)(1/4)}{9/40}=\frac{1}{3}.
+    \]
+    \item El árbol anterior representa las tres posibilidades de cadena y sus resultados condicionales, con las probabilidades de cada rama indicadas.
+\end{enumerate}
+
+\end{document}

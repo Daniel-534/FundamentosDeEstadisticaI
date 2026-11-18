@@ -1,0 +1,71 @@
+\begin{tikzpicture}[x=0.022cm,y=0.40cm,font=\scriptsize]
+    \draw[->,thick] (180,5) -- (710,5) node[right] {Peso del correo, $X$ (libras)};
+    \draw[->,thick] (180,5) -- (180,22) node[above] {Órdenes, $Y$ (miles)};
+    \foreach \xx in {200,300,400,500,600,700} {
+        \draw[gray!35] (\xx,5) -- (\xx,21);
+        \node[below=2pt] at (\xx,5) {\xx};
+    }
+    \foreach \yy in {5,10,15,20} {
+        \draw[gray!35] (200,\yy) -- (700,\yy);
+        \node[left=2pt] at (200,\yy) {\yy};
+    }
+    \draw[gray!65,densely dashed] (216,6.1000) -- (216,6.6070);
+    \draw[gray!65,densely dashed] (283,9.1000) -- (283,8.5971);
+    \draw[gray!65,densely dashed] (237,7.2000) -- (237,7.2308);
+    \draw[gray!65,densely dashed] (203,7.5000) -- (203,6.2209);
+    \draw[gray!65,densely dashed] (259,6.9000) -- (259,7.8842);
+    \draw[gray!65,densely dashed] (374,11.5000) -- (374,11.3000);
+    \draw[gray!65,densely dashed] (342,10.3000) -- (342,10.3495);
+    \draw[gray!65,densely dashed] (301,9.5000) -- (301,9.1317);
+    \draw[gray!65,densely dashed] (365,9.2000) -- (365,11.0327);
+    \draw[gray!65,densely dashed] (384,10.6000) -- (384,11.5970);
+    \draw[gray!65,densely dashed] (404,12.5000) -- (404,12.1911);
+    \draw[gray!65,densely dashed] (426,12.9000) -- (426,12.8446);
+    \draw[gray!65,densely dashed] (482,14.5000) -- (482,14.5079);
+    \draw[gray!65,densely dashed] (432,13.6000) -- (432,13.0228);
+    \draw[gray!65,densely dashed] (409,12.8000) -- (409,12.3396);
+    \draw[gray!65,densely dashed] (553,16.5000) -- (553,16.6168);
+    \draw[gray!65,densely dashed] (572,17.1000) -- (572,17.1811);
+    \draw[gray!65,densely dashed] (506,15.0000) -- (506,15.2208);
+    \draw[gray!65,densely dashed] (528,16.2000) -- (528,15.8742);
+    \draw[gray!65,densely dashed] (501,15.8000) -- (501,15.0723);
+    \draw[gray!65,densely dashed] (628,19.0000) -- (628,18.8445);
+    \draw[gray!65,densely dashed] (677,19.4000) -- (677,20.2999);
+    \draw[gray!65,densely dashed] (602,19.1000) -- (602,18.0722);
+    \draw[gray!65,densely dashed] (630,18.0000) -- (630,18.9039);
+    \draw[gray!65,densely dashed] (652,20.2000) -- (652,19.5574);
+    \draw[blue!70!black,very thick] (203,6.2209) -- (677,20.2999);
+    \fill[black] (216,6.1) circle (2.2pt);
+    \fill[black] (283,9.1) circle (2.2pt);
+    \fill[black] (237,7.2) circle (2.2pt);
+    \fill[black] (203,7.5) circle (2.2pt);
+    \fill[black] (259,6.9) circle (2.2pt);
+    \fill[black] (374,11.5) circle (2.2pt);
+    \fill[black] (342,10.3) circle (2.2pt);
+    \fill[black] (301,9.5) circle (2.2pt);
+    \fill[black] (365,9.2) circle (2.2pt);
+    \fill[black] (384,10.6) circle (2.2pt);
+    \fill[black] (404,12.5) circle (2.2pt);
+    \fill[black] (426,12.9) circle (2.2pt);
+    \fill[black] (482,14.5) circle (2.2pt);
+    \fill[black] (432,13.6) circle (2.2pt);
+    \fill[black] (409,12.8) circle (2.2pt);
+    \fill[black] (553,16.5) circle (2.2pt);
+    \fill[black] (572,17.1) circle (2.2pt);
+    \fill[black] (506,15.0) circle (2.2pt);
+    \fill[black] (528,16.2) circle (2.2pt);
+    \fill[black] (501,15.8) circle (2.2pt);
+    \fill[black] (628,19.0) circle (2.2pt);
+    \fill[black] (677,19.4) circle (2.2pt);
+    \fill[black] (602,19.1) circle (2.2pt);
+    \fill[black] (630,18.0) circle (2.2pt);
+    \fill[black] (652,20.2) circle (2.2pt);
+    \draw[red!75!black,dashed,thick] (500,5) -- (500,15.0426);
+    \fill[red!75!black] (500,15.0426) circle (3pt);
+    \draw[red!75!black,->,thick] (577,11.6) -- (503,14.9);
+    \node[red!75!black,align=left,draw=red!50,fill=white,inner sep=2pt] at (605,11.7)
+        {Predicción para $X=500$\\$\widehat Y=15.04$ miles};
+    \node[blue!70!black,fill=white,inner sep=2pt] at (355,20.4) {$\widehat Y=0.19122+0.0297027X$};
+    \node[align=left,draw=gray!50,fill=white,inner sep=3pt] at (605,7.2)
+        {Puntos: observados\\Línea: mínimos cuadrados\\Segmentos: residuos};
+\end{tikzpicture}

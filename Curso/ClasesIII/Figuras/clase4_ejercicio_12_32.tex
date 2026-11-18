@@ -1,0 +1,17 @@
+\begin{tikzpicture}[x=1.2cm,y=0.36cm,font=\scriptsize]
+    \draw[->,gray] (0.5,-6) -- (10.7,-6) node[right] {Periodo};
+    \draw[->,gray] (0.5,-6) -- (0.5,6.4) node[above] {Residuo};
+    \draw[gray,dashed] (0.5,0) -- (10.2,0);
+    \foreach \x in {1,2,3,4,5,6,7,8,9,10} {
+        \draw[gray!45] (\x,-5.5) -- (\x,5.5);
+        \node[below=2pt] at (\x,-6) {\x};
+    }
+    \foreach \y in {-5,-4,-3,-2,-1,1,2,3,4,5} {
+        \draw[gray!45] (0.5,\y) -- (10.2,\y);
+        \node[left=2pt] at (0.5,\y) {\y};
+    }
+    \draw[blue!60!black,thin] plot coordinates {(1,-5) (2,-4) (3,-3) (4,-2) (5,-1) (6,1) (7,2) (8,3) (9,4) (10,5)};
+    \foreach \x/\e in {1/-5,2/-4,3/-3,4/-2,5/-1,6/1,7/2,8/3,9/4,10/5} {
+        \fill[blue!70!black] (\x,\e) circle (2.8pt);
+    }
+\end{tikzpicture}
